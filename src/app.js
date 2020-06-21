@@ -5,6 +5,9 @@ import store from '@/stores';
 
 //渲染之前做权限校验
 export function render(oldRender) {
+  // 设置主题
+  const prevCss = localStorage.getItem('fk-theme');
+  document.head.querySelector('#theme').setAttribute('href', prevCss);
   if (true) {
     console.log(8888);
     oldRender();

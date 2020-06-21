@@ -3,6 +3,7 @@ import store from '../../stores';
 import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './index.less';
+import { Link } from 'umi';
 
 export default function(props) {
 // 声明一个新的叫做 “count” 的 state 变量
@@ -24,7 +25,7 @@ export default function(props) {
       <button onClick={() => setCount(count + 1)}>
         Click me
       </button>
-
+      <Link to="/home">跳转到HOME</Link>
       <button onClick={() => dispatch.login.updateKey({ status: '123' })}>
         Click store
       </button>
