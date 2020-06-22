@@ -4,12 +4,18 @@ import { Button } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from './index.less';
 import { Link } from 'umi';
+import { useModel } from '../../.umi/plugin-model/useModel';
 
 export default function(props) {
 // 声明一个新的叫做 “count” 的 state 变量
   const [count, setCount] = useState(0);
   const { p, status } = useSelector(state => state.login);
   const dispatch = useDispatch();
+
+  const { user } = useModel(
+    'test',
+    model => ({ user: model.user }),
+  );
 
   const changeTheme = (path) => () => {
     localStorage.setItem('fk-theme', path);
@@ -18,6 +24,7 @@ export default function(props) {
 
   return (
     <div className={styles.abc}>
+      {user}
       {status}
       {p && p.x}
       <Button type="primary">123</Button>
