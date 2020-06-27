@@ -23,6 +23,7 @@
     "@ant-design/icons": "^4.2.1",
     "@ant-design/pro-layout": "^5.0.12",
     "@rematch/core": "^1.4.0",
+    "@rematch/persist": "^1.1.6",
     "@umijs/hooks": "^1.9.3",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.4",

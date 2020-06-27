@@ -2,12 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Input, message, Modal } from 'antd';
 import { useEventTarget } from '@umijs/hooks';
 import axios from 'axios';
+import { useModel } from 'umi';
 
 import styles from './index.less';
 import logo from '@img/logo.png';
 import loginAccount from '@img/login-account.svg';
 import loginPwd from '@img/login-password.svg';
-import { history } from '../../.umi/core/history';
 
 // 判断chrome版本号
 const judgeVersion = () => {
@@ -81,6 +81,7 @@ const judgeVersion = () => {
 export default props => {
   const [nameProps] = useEventTarget();
   const [pwdProps] = useEventTarget();
+  const { topActive, setTopActive } = useModel('system') || {};
 
   useEffect(() => {
     judgeVersion();
@@ -115,6 +116,7 @@ export default props => {
       if (userInfoRes) {
         const menusRes = await axios('authcenter/menus/af');
         localStorage.setItem('af-menus', JSON.stringify(menusRes));
+        setTopActive(menusRes[0].code);
         props.history.push('/home');
       }
     }
