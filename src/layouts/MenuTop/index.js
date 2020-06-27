@@ -1,17 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Input, message, Modal, Dropdown } from 'antd';
+import { Modal, Dropdown } from 'antd';
 import { useBoolean } from '@umijs/hooks';
 import axios from 'axios';
 import menuIcon from '@utils/menuIcon';
 import { Menu } from 'antd';
 import { useModel } from 'umi';
 
-import {
-  MailOutlined,
-  AppstoreOutlined,
-  SettingOutlined,
-  LogoutOutlined,
-} from '@ant-design/icons';
+import { AppstoreOutlined, LogoutOutlined } from '@ant-design/icons';
 
 import styles from './index.less';
 import logo from '@img/logo.png';
