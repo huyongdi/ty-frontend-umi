@@ -3,9 +3,6 @@ export default [
   {
     path: '/',
     component: '@/layouts/appWrap/',
-    routes: [
-      { path: '/home', component: '@/pages/home' },
-      { path: '/test', component: '@/pages/test' },
-    ],
+    routes: [{ path: '/home', component: '@/pages/home' }],
   },
 ];

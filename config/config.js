@@ -11,10 +11,13 @@ export default defineConfig({
   },
   alias: {
     // 别名
-    '@store': '@/stores',
     '@img': '@/assets/img',
+    '@media': '@/assets/media',
+    '@store': '@/stores',
+    '@utils': '@/utils',
     '@components': '@/components',
   },
+  routes,
   chainWebpack(memo, { env, webpack, createCSSRule }) {
     themeArr.forEach(({ name, path }) => {
       memo
@@ -22,6 +25,10 @@ export default defineConfig({
         .add(path)
         .end();
     });
+    memo.module
+      .rule('media')
+      .test(/\.(mp3|4)$/)
+      .use('file-loader')
+      .loader(require.resolve('file-loader'));
   },
-  routes,
 });

@@ -1,3 +1,11 @@
+.liHover {
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(54, 232, 255, 0.22) 100%
+  );
+  border-bottom: 4px solid #00cbc5;
+}
 .headerWrap {
   height: 3.7rem;
   width: 100%;
@@ -5,7 +13,7 @@
   padding: 0 0 0 1rem;
   position: relative;
   display: flex;
-
+  color: #fff;
   .logo {
     height: 3rem;
     position: absolute;
@@ -24,11 +32,33 @@
   }
 
   .main {
-    display: inline-block;
-    width: calc(100% - 26.11rem); // 1+3.91+8*1.4+右侧距离 = 16.11
+    width: calc(100% - 25.11rem); // 1+3.91+8*1.4+右侧距离 = 16.11
     height: 100%;
     flex-grow: 1;
-    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    li {
+      display: inline-block;
+      line-height: 3.7rem;
+      width: 9rem;
+      border-bottom: 4px solid transparent;
+      text-align: center;
+      cursor: pointer;
+      > i {
+        font-size: 0.9rem;
+        margin-right: 0.8rem;
+      }
+      > span {
+        font-size: 1.2rem;
+        font-weight: bold;
+      }
+      &:hover {
+        .liHover();
+      }
+    }
+    .liIn {
+      .liHover();
+    }
   }
 
   .msg {
@@ -36,20 +66,67 @@
     position: relative;
     text-align: center;
     width: 4rem;
+    font-size: 0.8rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border-left: 1px solid rgba(255, 255, 255, 0.12);
     border-right: 1px solid rgba(255, 255, 255, 0.12);
+
+    .unread {
+      position: absolute;
+      background-color: red;
+      border-radius: 10px;
+      padding: 2px;
+      transform: scale(0.8);
+      right: 0.01rem;
+      top: 0;
+      min-width: 20px;
+      text-align: center;
+    }
   }
 
   .userName {
     cursor: pointer;
+
     .nameLabel {
       display: inline-block;
       cursor: pointer;
       padding: 0 1rem;
       line-height: 3.7rem;
       height: 3.7rem;
+    }
+  }
+
+  .hideRefresh {
+    position: absolute;
+    top: 4rem;
+    width: 17rem;
+    height: 3rem;
+    line-height: 3rem;
+    right: 1rem;
+    z-index: 10;
+    color: #333;
+    padding: 0 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.16);
+    font-size: 0.9rem;
+    .tra {
+      position: absolute;
+      top: -20px;
+      left: 10.2rem;
+      width: 0;
+      height: 0;
+      border: 10px solid;
+      border-color: transparent transparent #fff;
+    }
+    .count {
+      float: left;
+    }
+    > span:last-child {
+      float: right;
+      color: #1890ff;
+      cursor: pointer;
     }
   }
 }
