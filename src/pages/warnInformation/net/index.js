@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import store from '../../stores';
+import store from '../../../stores';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
 @connect(

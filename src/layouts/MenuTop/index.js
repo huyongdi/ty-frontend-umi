@@ -4,7 +4,7 @@ import { useBoolean } from '@umijs/hooks';
 import axios from 'axios';
 import menuIcon from '@utils/menuIcon';
 import { Menu } from 'antd';
-import { Link, useModel } from 'umi';
+import { useModel } from 'umi';
 
 import {
   MailOutlined,
