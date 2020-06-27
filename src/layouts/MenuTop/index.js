@@ -95,8 +95,8 @@ const refreshList = async () => {};
 export default props => {
   const [unread, setUnread] = useState(0);
   const { state, toggle, setTrue, setFalse } = useBoolean(false);
-  const { topActive, setTopActive } = useModel('system');
-  console.log(topActive);
+  const { topActive, setTopActive } = useModel('system') || {};
+
   const menus = JSON.parse(localStorage.getItem('af-menus'));
   const {
     accountInfo: { name },
@@ -114,6 +114,7 @@ export default props => {
   // 退出登录
   const logout = () => {
     localStorage.clear();
+    // window.location.reload();
     props.history.push('/login');
   };
   return (
