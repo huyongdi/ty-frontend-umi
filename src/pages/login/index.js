@@ -90,7 +90,7 @@ const judgeVersion = () => {
 export default props => {
   const [nameProps] = useEventTarget();
   const [pwdProps] = useEventTarget();
-  const { setTopActive } = useModel('system');
+  const { setMenuActive } = useModel('system');
 
   useEffect(() => {
     judgeVersion();
@@ -125,7 +125,7 @@ export default props => {
       if (userInfoRes) {
         const menusRes = await axios('authcenter/menus/af');
         localStorage.setItem('af-menus', JSON.stringify(menusRes));
-        setTopActive(menusRes[0].code);
+        setMenuActive({ top: menusRes[0].code });
         props.history.push('/yjxx');
       }
     }

@@ -7,13 +7,15 @@ import { SearchOutlined } from '@ant-design/icons';
 import './index.less';
 
 export default props => {
-  const { activeMenu } = useModel('system');
+  const {
+    activeMenuInfo: { menus },
+  } = useModel('system');
   const [breadName, setName] = useState([]);
   useEffect(() => {
-    activeMenu.child.forEach(item => {
+    menus.child.forEach(item => {
       item.child.forEach(val => {
         if (val.path === props.location.pathname) {
-          setName([activeMenu.name, item.name, val.name]);
+          setName([menus.name, item.name, val.name]);
         }
       });
     });

@@ -90,7 +90,10 @@ const refreshList = async () => {};
 export default props => {
   const [unread, setUnread] = useState(0);
   const { state, toggle, setTrue, setFalse } = useBoolean(false);
-  const { topActive, setTopActive } = useModel('system') || {};
+  const {
+    activeMenuInfo: { top },
+    setMenuActive,
+  } = useModel('system') || {};
 
   const menus = JSON.parse(localStorage.getItem('af-menus'));
   const {
@@ -125,8 +128,8 @@ export default props => {
           return (
             <li
               key={item.name}
-              className={topActive === item.code ? styles.liIn : ''}
-              onClick={() => setTopActive(item.code)}
+              className={top === item.code ? styles.liIn : ''}
+              onClick={() => setMenuActive({ top: item.code })}
             >
               <i className={`${menuIcon(item.name)} iconfont`} />
               <span>{item.name}</span>

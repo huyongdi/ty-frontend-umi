@@ -34,9 +34,7 @@ const menuRender = menus => {
 
 export default props => {
   const { state: collapsed, toggle, setTrue, setFalse } = useBoolean(false);
-  const { topActive, activeMenu } = useModel('system');
-  console.log(activeMenu);
-  console.log(topActive);
+  const { activeMenuInfo } = useModel('system');
   return (
     <div className={styles.menuWrap}>
       <Menu
@@ -47,7 +45,7 @@ export default props => {
         defaultOpenKeys={['3']}
         defaultSelectedKeys={['11']}
       >
-        {menuRender(activeMenu)}
+        {menuRender(activeMenuInfo.menus)}
       </Menu>
     </div>
   );

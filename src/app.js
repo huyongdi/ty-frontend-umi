@@ -9,7 +9,7 @@ import axios from 'axios';
 //渲染之前做权限校验
 export function render(oldRender) {
   // 设置主题
-  const prevCss = localStorage.getItem('fk-theme');
+  const prevCss = localStorage.getItem('af-theme');
   prevCss && document.querySelector('#theme').setAttribute('href', prevCss);
 
   // 判断是否登录过
