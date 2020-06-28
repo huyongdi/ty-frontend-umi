@@ -123,10 +123,10 @@ export default props => {
           token: loginRes.token,
         },
       );
-      localStorage.setItem('af-user', JSON.stringify(userInfoRes));
+      system.updateKey({ userInfo: userInfoRes });
       if (userInfoRes) {
         const menusRes = await axios('authcenter/menus/af');
-        localStorage.setItem('af-menus', JSON.stringify(menusRes));
+        system.updateKey({ allMenus: menusRes });
         system.updateKey([
           'activeMenu',
           {

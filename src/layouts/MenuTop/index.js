@@ -51,13 +51,8 @@ const showModalAndSendMsg = unread => {
 };
 
 // 消息websocket
-const getMessage = (unread, setUnread) => {
+const getMessage = (unread, setUnread, idCard) => {
   const player = document.getElementById('player');
-  const {
-    accountInfo: {
-      personInfo: { idCard },
-    },
-  } = JSON.parse(localStorage.getItem('af-user'));
   let ws = new WebSocket(
     `ws://${window.location.hostname}:9920/websocket/${idCard}/${idCard}/1`,
   );
@@ -90,19 +85,22 @@ export default props => {
   const [unread, setUnread] = useState(0);
   const { state, toggle, setTrue, setFalse } = useBoolean(false);
   const {
+    token,
+    allMenus,
     activeMenu: { top },
+    userInfo: {
+      accountInfo: {
+        personInfo: { idCard },
+        name,
+      },
+    },
   } = useSelector(state => state.system);
   const { system } = useDispatch();
 
-  const menus = JSON.parse(localStorage.getItem('af-menus'));
-  const {
-    accountInfo: { name },
-  } = JSON.parse(localStorage.getItem('af-user'));
   const BACK_URL = process.env.BACK_PATH || `${window.location.hostname}:89`;
-  const token = localStorage.getItem('af-token');
   useEffect(() => {
     getMsgCount(setUnread);
-    getMessage(unread, setUnread);
+    getMessage(unread, setUnread, idCard);
     userAction(unread);
     return () => {
       clearInterval(moveInterval);
@@ -123,7 +121,7 @@ export default props => {
       <img className={styles.logo} src={logo} alt="logo" />
       <span className={styles.sysName}>重庆市反诈狙击手</span>
       <ul className={styles.main}>
-        {menus.map(item => {
+        {allMenus.map(item => {
           return (
             <li
               key={item.name}

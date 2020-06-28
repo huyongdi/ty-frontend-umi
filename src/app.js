@@ -10,13 +10,14 @@ const persistor = getPersistor();
 
 //渲染之前做权限校验
 export function render(oldRender) {
+  // 主题和token不从persist拿，加快速度
   // 设置主题
   const prevCss = localStorage.getItem('af-theme');
   prevCss && document.querySelector('#theme').setAttribute('href', prevCss);
 
   // 判断是否登录过
-  const loginRes = localStorage.getItem('af-token');
   oldRender();
+  const loginRes = localStorage.getItem('af-token');
   !loginRes && history.push('/login');
 }
 

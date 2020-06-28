@@ -2,6 +2,10 @@ import produce from 'immer';
 
 const initState = {
   // 登录成功后存的数据
+  token: null,
+  userInfo: null,
+  allMenus: null,
+  theme: null,
   // 被激活的导航
   activeMenu: {
     top: null, // 顶部哪个被激活：预警 统计 设置

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Notification } from 'antd';
+import store from '@/stores';
 
 // 根据code弹出提示
 const showMsg = (code, message) => {
@@ -25,11 +26,8 @@ const showMsg = (code, message) => {
   });
 };
 
-axios.defaults.timeout = 1000;
+axios.defaults.timeout = 60000;
 axios.defaults.baseURL = 'f-api/';
-// axios.defaults.headers = {
-//   authentication: localStorage.getItem('af-token'),
-// };
 // 添加请求拦截器
 axios.interceptors.request.use(
   function(config) {

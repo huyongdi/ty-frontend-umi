@@ -7,5 +7,6 @@ import { useModel } from 'umi';
 import styles from './index.less';
 
 export default props => {
+  console.log('电话预警');
   return <div className={styles.loginWrap}>电话预警</div>;
 };
