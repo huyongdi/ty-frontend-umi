@@ -11,9 +11,7 @@ import { connect, useDispatch, useSelector } from 'react-redux';
   }),
 )
 export default class Home extends React.Component {
-  componentDidMount() {
-    console.log(222);
-  }
+  componentDidMount() {}
 
   render() {
     const { status } = this.props.home;

@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import store from '@/stores';
 
 import '@/utils/axiosConfig';
-import axios from 'axios';
 
 //渲染之前做权限校验
 export function render(oldRender) {
@@ -20,24 +19,11 @@ export function render(oldRender) {
 
 //在初始加载和路由切换时做一些事情
 export function onRouteChange(obj) {
-  console.log(obj);
+  // console.log(obj);
   // bacon(location.pathname);
 }
 
 // 修改交给 react-dom 渲染时的根组件。
 export function rootContainer(container, { routes, plugin, history }) {
-  // const AppContext = React.createContext({axios});
-  //
-  // const appProps = {
-  //   abc:axios,
-  // };
-  console.log('运行了provider');
-  return (
-    <Provider store={store}>
-      {/*<AppContext.Provider value={appProps}>*/}
-      {container}
-
-      {/*</AppContext.Provider>*/}
-    </Provider>
-  );
+  return <Provider store={store}>{container}</Provider>;
 }

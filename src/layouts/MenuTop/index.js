@@ -46,9 +46,7 @@ const showModalAndSendMsg = unread => {
       okText: '知道了',
     });
   }
-  axios.post('antifraud//smsTeamplte/threeMinuteSendSms').then(res => {
-    console.log(res);
-  });
+  axios.post('antifraud//smsTeamplte/threeMinuteSendSms').then(res => {});
 };
 
 // 消息websocket
@@ -129,7 +127,7 @@ export default props => {
             <li
               key={item.name}
               className={top === item.code ? styles.liIn : ''}
-              onClick={() => setMenuActive({ top: item.code })}
+              onClick={() => setMenuActive({ top: item.code, menus: item })}
             >
               <i className={`${menuIcon(item.name)} iconfont`} />
               <span>{item.name}</span>

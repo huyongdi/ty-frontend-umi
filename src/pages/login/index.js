@@ -125,7 +125,13 @@ export default props => {
       if (userInfoRes) {
         const menusRes = await axios('authcenter/menus/af');
         localStorage.setItem('af-menus', JSON.stringify(menusRes));
-        setMenuActive({ top: menusRes[0].code });
+        console.log(menusRes);
+        setMenuActive({
+          top: menusRes[0].code,
+          menus: menusRes[0],
+          openCode: [menusRes[0].child[0].code],
+          selectCode: [menusRes[0].child[0].child[0].code],
+        });
         props.history.push('/yjxx');
       }
     }

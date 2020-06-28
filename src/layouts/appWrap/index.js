@@ -6,7 +6,6 @@ import axios from 'axios';
 import styles from './index.less';
 
 export default props => {
-  console.log(props);
   return (
     <div className={styles.appWrap}>
       <MenuTop {...props} />

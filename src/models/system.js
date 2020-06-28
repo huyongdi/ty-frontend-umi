@@ -4,31 +4,26 @@ import produce from 'immer';
 
 export default () => {
   // 被激活的导航
-  const [activeMenuInfo, setActive] = useState(
+  let [activeMenuInfo, setActive] = useState(
     JSON.parse(localStorage.getItem('af-activeMenu')) || {
       top: null, // 顶部哪个被激活：预警 统计 设置
-      menus: null, // 被激活的菜单（包括所有层级）
+      menus: null, // 被激活的菜单（包括所有层级）数组
+      openCode: null, // 左侧导航哪个默认展开 (电话预警/网络预警) 数组
+      selectCode: null, // 左侧导航选中了哪个具体的页面 数组
     },
   );
-
-  // 切换顶部激活的同时，将值保存在缓存中
+  // 修改被激活的导航
   const setMenuActive = useCallback(params => {
-    const draftState = produce(activeMenuInfo, draft => {
-      if (typeof activeMenuInfo === 'object') {
+    const nextState = produce(
+      JSON.parse(localStorage.getItem('af-activeMenu')) || {},
+      draftState => {
         for (let key in params) {
-          console.log(key);
-          draft[key] = params[key];
-          if (key === 'top') {
-            // 第一层变化时，统一在这里修改被激活的menus菜单
-            draft.menus = JSON.parse(localStorage.getItem('af-menus')).find(
-              item => item.code === params.top,
-            );
-          }
+          draftState[key] = params[key];
         }
-      }
-    });
-    setActive(draftState);
-    localStorage.setItem('af-activeMenu', JSON.stringify(draftState));
+      },
+    );
+    setActive(nextState);
+    localStorage.setItem('af-activeMenu', JSON.stringify(nextState));
   }, []);
   return {
     activeMenuInfo,

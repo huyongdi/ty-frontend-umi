@@ -10,14 +10,13 @@ export default {
   state: initState,
   reducers: {
     updateKey(state, data) {
-      console.log(data);
       // let nextState  = produce(state, draft => {
       //     console.log(state);
       //     console.log(draft);
       //     draft.p.x = 1;
       // })
       // console.log(nextState);
-      console.log(2222222);
+
       return { status: data.status };
     },
   },

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useBoolean } from '@umijs/hooks';
 import menuIcon from '@utils/menuIcon';
-import { Link, useModel } from 'umi';
+import { Link, useModel, history } from 'umi';
 import { Menu } from 'antd';
 
 import styles from './index.less';
@@ -35,6 +35,7 @@ const menuRender = menus => {
 export default props => {
   const { state: collapsed, toggle, setTrue, setFalse } = useBoolean(false);
   const { activeMenuInfo } = useModel('system');
+
   return (
     <div className={styles.menuWrap}>
       <Menu
@@ -42,8 +43,8 @@ export default props => {
         theme="dark"
         mode="inline"
         inlineCollapsed={collapsed}
-        defaultOpenKeys={['3']}
-        defaultSelectedKeys={['11']}
+        defaultOpenKeys={activeMenuInfo.openCode}
+        defaultSelectedKeys={activeMenuInfo.selectCode}
       >
         {menuRender(activeMenuInfo.menus)}
       </Menu>
