@@ -3,6 +3,7 @@ import { useBoolean } from '@umijs/hooks';
 import menuIcon from '@utils/menuIcon';
 import { Link, useModel, history } from 'umi';
 import { Menu } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './index.less';
 import './menu.less';
@@ -34,8 +35,10 @@ const menuRender = menus => {
 
 export default props => {
   const { state: collapsed, toggle, setTrue, setFalse } = useBoolean(false);
-  const { activeMenuInfo } = useModel('system');
-
+  const {
+    activeMenu: { openCode, selectCode, menus },
+  } = useSelector(state => state.system);
+  console.log(menus);
   return (
     <div className={styles.menuWrap}>
       <Menu
@@ -43,10 +46,10 @@ export default props => {
         theme="dark"
         mode="inline"
         inlineCollapsed={collapsed}
-        defaultOpenKeys={activeMenuInfo.openCode}
-        defaultSelectedKeys={activeMenuInfo.selectCode}
+        defaultOpenKeys={openCode}
+        defaultSelectedKeys={selectCode}
       >
-        {menuRender(activeMenuInfo.menus)}
+        {menuRender(menus)}
       </Menu>
     </div>
   );

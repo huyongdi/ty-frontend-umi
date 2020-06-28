@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { useBoolean } from '@umijs/hooks';
 import { Link, useModel } from 'umi';
 import { Breadcrumb, Button } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchOutlined } from '@ant-design/icons';
 import './index.less';
 
 export default props => {
   const {
-    activeMenuInfo: { menus },
-    setMenuActive,
-  } = useModel('system');
+    activeMenu: { menus },
+  } = useSelector(state => state.system);
+  const { system } = useDispatch();
+
   const [breadName, setName] = useState([]);
   useEffect(() => {
     // 递归不方便处理，先遍历层级，后面看基础服务做改进
@@ -19,10 +21,13 @@ export default props => {
       item.child.forEach(val => {
         if (val.path === props.location.pathname) {
           setName([menus.name, item.name, val.name]);
-          setMenuActive({
-            openCode: [item.code],
-            selectCode: [val.code],
-          });
+          system.updateKey([
+            'activeMenu',
+            {
+              openCode: [item.code],
+              selectCode: [val.code],
+            },
+          ]);
         }
       });
     });

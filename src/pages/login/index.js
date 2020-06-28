@@ -3,6 +3,7 @@ import { Input, message, Modal } from 'antd';
 import { useEventTarget } from '@umijs/hooks';
 import axios from 'axios';
 import { useModel } from 'umi';
+import { useDispatch, useSelector } from 'react-redux';
 
 import styles from './index.less';
 import logo from '@img/logo.png';
@@ -90,7 +91,8 @@ const judgeVersion = () => {
 export default props => {
   const [nameProps] = useEventTarget();
   const [pwdProps] = useEventTarget();
-  const { setMenuActive } = useModel('system');
+  // const { p, status } = useSelector(state => state.system)
+  const { system } = useDispatch();
 
   useEffect(() => {
     judgeVersion();
@@ -125,13 +127,15 @@ export default props => {
       if (userInfoRes) {
         const menusRes = await axios('authcenter/menus/af');
         localStorage.setItem('af-menus', JSON.stringify(menusRes));
-        console.log(menusRes);
-        setMenuActive({
-          top: menusRes[0].code,
-          menus: menusRes[0],
-          openCode: [menusRes[0].child[0].code],
-          selectCode: [menusRes[0].child[0].child[0].code],
-        });
+        system.updateKey([
+          'activeMenu',
+          {
+            top: menusRes[0].code,
+            menus: menusRes[0],
+            openCode: [menusRes[0].child[0].code],
+            selectCode: [menusRes[0].child[0].child[0].code],
+          },
+        ]);
         props.history.push('/yjxx');
       }
     }

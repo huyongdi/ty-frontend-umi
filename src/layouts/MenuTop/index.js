@@ -5,6 +5,7 @@ import axios from 'axios';
 import menuIcon from '@utils/menuIcon';
 import { Menu } from 'antd';
 import { useModel } from 'umi';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { AppstoreOutlined, LogoutOutlined } from '@ant-design/icons';
 
@@ -89,9 +90,9 @@ export default props => {
   const [unread, setUnread] = useState(0);
   const { state, toggle, setTrue, setFalse } = useBoolean(false);
   const {
-    activeMenuInfo: { top },
-    setMenuActive,
-  } = useModel('system') || {};
+    activeMenu: { top },
+  } = useSelector(state => state.system);
+  const { system } = useDispatch();
 
   const menus = JSON.parse(localStorage.getItem('af-menus'));
   const {
@@ -127,7 +128,12 @@ export default props => {
             <li
               key={item.name}
               className={top === item.code ? styles.liIn : ''}
-              onClick={() => setMenuActive({ top: item.code, menus: item })}
+              onClick={() =>
+                system.updateKey([
+                  'activeMenu',
+                  { top: item.code, menus: item },
+                ])
+              }
             >
               <i className={`${menuIcon(item.name)} iconfont`} />
               <span>{item.name}</span>

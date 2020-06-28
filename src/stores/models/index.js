@@ -1,1 +1,1 @@
-export home from './home';
+export system from './system';
