@@ -110,6 +110,7 @@ export default props => {
   const logout = () => {
     localStorage.clear();
     // window.location.reload();
+    props.history.length = 0;
     props.history.push('/login');
   };
   return (

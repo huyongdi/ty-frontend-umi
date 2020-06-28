@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react';
 import MenuTop from '../MenuTop';
 import MenuLeft from '../MenuLeft';
 import Breadcrumb from '../Breadcrumb';
-
+import axios from 'axios';
 import styles from './index.less';
 
 export default props => {
   console.log(props);
   return (
     <div className={styles.appWrap}>
-      <MenuTop history={props.history} />
+      <MenuTop {...props} />
       <div className={styles.appMain}>
-        <MenuLeft history={props.history} />
+        <MenuLeft {...props} />
         <div className={styles.rightMain}>
-          <Breadcrumb location={props.location} />
-          {props.children}
+          <Breadcrumb {...props} />
+          <div className={styles.pageWrap}>
+            {React.cloneElement(props.children, { axios: axios })}
+          </div>
         </div>
       </div>
     </div>

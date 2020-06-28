@@ -19,7 +19,7 @@ export default class Home extends React.Component {
     const { status } = this.props.home;
     return (
       <div>
-        <h1>Hello, world!</h1>
+        <h1>Hello, world!网络</h1>
         <span>{status}</span>
         <button onClick={() => this.props.updateKey({ status: 10 })}>
           Click store

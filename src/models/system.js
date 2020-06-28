@@ -4,7 +4,7 @@ import { useModel } from '../.umi/plugin-model/useModel';
 export default () => {
   // 顶部哪个被激活 （预警/统计/设置）
   const [topActive, setActive] = useState(
-    localStorage.getItem('af-top') || null,
+    localStorage.getItem('af-activeTop') || null,
   );
   // 哪个最外层的menu被激活
   const [activeMenu, setActiveMenu] = useState(
@@ -14,7 +14,7 @@ export default () => {
   // 切换顶部激活的同时，将值保存在缓存中
   const setTopActive = useCallback(code => {
     setActive(code);
-    localStorage.setItem('af-top', code);
+    localStorage.setItem('af-activeTop', code);
     let menus = JSON.parse(localStorage.getItem('af-menus'));
 
     menus = menus.find(item => item.code === code);

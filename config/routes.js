@@ -1,4 +1,5 @@
 export default [
+  { exact: true, path: '/', redirect: '/login' },
   { path: '/login', component: '@/pages/login' }, // 登录页
   {
     path: '/',

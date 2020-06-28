@@ -8,6 +8,7 @@ import styles from './index.less';
 import logo from '@img/logo.png';
 import loginAccount from '@img/login-account.svg';
 import loginPwd from '@img/login-password.svg';
+import chromeImg from '@img/login-chrome.png';
 
 // 判断chrome版本号
 const judgeVersion = () => {
@@ -45,7 +46,11 @@ const judgeVersion = () => {
             alt=""
             style={{ verticalAlign: 'top', marginLeft: 10, marginRight: 5 }}
           />
-          <a href={VERSION.download}>Chrome浏览器</a>
+          <a
+            href={`${window.location.hostname}/download/80.0.3987.87_chrome_installer64%E4%BD%8D.exe`}
+          >
+            Chrome浏览器
+          </a>
         </span>
       ),
       footer: null,
@@ -67,7 +72,11 @@ const judgeVersion = () => {
               alt=""
               style={{ verticalAlign: 'top', marginLeft: 10, marginRight: 5 }}
             />
-            <a href={VERSION.download}>Chrome浏览器</a>
+            <a
+              href={`${window.location.hostname}/download/80.0.3987.87_chrome_installer64%E4%BD%8D.exe`}
+            >
+              Chrome浏览器
+            </a>
           </span>
         ),
         footer: null,
@@ -81,7 +90,7 @@ const judgeVersion = () => {
 export default props => {
   const [nameProps] = useEventTarget();
   const [pwdProps] = useEventTarget();
-  const { setTopActive } = useModel('system') || {};
+  const { setTopActive } = useModel('system');
 
   useEffect(() => {
     judgeVersion();

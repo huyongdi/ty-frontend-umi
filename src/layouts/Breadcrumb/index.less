@@ -1,3 +1,34 @@
 .breadWrap {
   height: 3rem;
+  line-height: 3rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+  .ant-breadcrumb {
+    line-height: inherit;
+    font-size: 1rem;
+  }
+
+  .breadButton {
+    > span {
+      display: inline-block;
+      width: 6rem;
+      height: 2.2rem;
+      line-height: 2.2rem;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 2px;
+      vertical-align: middle;
+      cursor: pointer;
+      text-align: center;
+
+      > i {
+        margin-right: 0.5rem;
+        font-size: 1rem;
+      }
+    }
+
+    > span:last-child {
+      margin-left: 1rem;
+    }
+  }
 }

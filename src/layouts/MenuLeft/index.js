@@ -44,6 +44,8 @@ export default props => {
         theme="dark"
         mode="inline"
         inlineCollapsed={collapsed}
+        defaultOpenKeys={['3']}
+        defaultSelectedKeys={['11']}
       >
         {menuRender(activeMenu)}
       </Menu>
