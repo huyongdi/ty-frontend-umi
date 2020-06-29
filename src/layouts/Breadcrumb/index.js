@@ -9,30 +9,12 @@ import './index.less';
 
 export default props => {
   const {
-    activeMenu: { menus },
+    activeMenu: { breadName },
   } = useSelector(state => state.system);
-  const { system } = useDispatch();
-
-  const [breadName, setName] = useState([]);
-  useEffect(() => {
-    // 递归不方便处理，先遍历层级，后面看基础服务做改进
-    // 遍历找到面包屑 并设置active
-    menus.child.forEach(item => {
-      item.child.forEach(val => {
-        if (val.path === props.location.pathname) {
-          setName([menus.name, item.name, val.name]);
-          system.updateKey([
-            'activeMenu',
-            {
-              openCode: [item.code],
-              selectCode: [val.code],
-            },
-          ]);
-        }
-      });
-    });
-  }, [props.location.pathname]);
-
+  const obj = useSelector(state => state.system);
+  console.log(obj);
+  console.log(breadName);
+  // console.log(activeMenu)
   // 刷新
   const refreshCurrentPage = () => {
     props.history.replace(props.location.pathname);

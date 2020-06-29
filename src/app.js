@@ -23,8 +23,9 @@ export function render(oldRender) {
 
 //在初始加载和路由切换时做一些事情
 export function onRouteChange(obj) {
-  // console.log(obj);
-  // bacon(location.pathname);
+  const { pathname } = obj.location;
+  if (pathname !== '/login')
+    store.dispatch.system.setActiveByCurrent(obj.location.pathname);
 }
 
 // 修改交给 react-dom 渲染时的根组件。

@@ -38,10 +38,10 @@ export default props => {
   const {
     activeMenu: { openCode, selectCode, menus },
   } = useSelector(state => state.system);
-  console.log(menus);
   return (
     <div className={styles.menuWrap}>
       <Menu
+        key={selectCode}
         className="leftMenu"
         theme="dark"
         mode="inline"

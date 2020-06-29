@@ -12,6 +12,7 @@ const initState = {
     menus: null, // 被激活的菜单（包括所有层级）数组
     openCode: null, // 左侧导航哪个默认展开 (电话预警/网络预警) 数组
     selectCode: null, // 左侧导航选中了哪个具体的页面 数组
+    breadName: [], // 面包屑导航的数组
   },
 };
 export default {
@@ -38,7 +39,28 @@ export default {
     },
   },
   effects: {
-    // async test(payload, rootState) {
-    // },
+    // 要拿的东西有点多，递归不方便处理，后面看基础服务的更新再调整
+    async setActiveByCurrent(payload, rootState) {
+      console.log('路由变化了');
+      const { allMenus } = rootState.system;
+      allMenus.forEach(menus => {
+        menus.child.forEach(item => {
+          item.child.forEach(val => {
+            if (val.path === payload) {
+              this.updateKey([
+                'activeMenu',
+                {
+                  top: menus.code,
+                  menus,
+                  openCode: [item.code],
+                  selectCode: [val.code],
+                  breadName: [menus.name, item.name, val.name],
+                },
+              ]);
+            }
+          });
+        });
+      });
+    },
   },
 };
