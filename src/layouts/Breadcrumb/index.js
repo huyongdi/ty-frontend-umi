@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useBoolean } from '@umijs/hooks';
 import { Link, useModel } from 'umi';
-import { Breadcrumb, Button } from 'antd';
+import { Breadcrumb, Button, message } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { SearchOutlined } from '@ant-design/icons';
@@ -22,7 +22,12 @@ export default props => {
 
   // 返回
   const backPage = () => {
-    props.history.goBack();
+    console.log(props.history.location.pathname);
+    if (props.history.location.pathname === '/yjxx') {
+      message.info('再返回就到登录了!');
+    } else {
+      props.history.goBack();
+    }
   };
 
   return (

@@ -151,7 +151,11 @@ export default props => {
       <div className={styles.userName}>
         <Dropdown
           overlay={
-            <Menu selectedKeys={[]} style={{ marginTop: 0 }}>
+            <Menu
+              className={styles.dropMenu}
+              selectedKeys={[]}
+              style={{ marginTop: 0 }}
+            >
               <Menu.Item
                 icon={<AppstoreOutlined />}
                 onClick={() =>

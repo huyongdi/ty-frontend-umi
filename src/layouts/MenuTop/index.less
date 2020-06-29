@@ -6,6 +6,7 @@
   );
   border-bottom: 4px solid #00cbc5;
 }
+
 .headerWrap {
   height: 3.7rem;
   width: 100%;
@@ -14,6 +15,7 @@
   position: relative;
   display: flex;
   color: #fff;
+
   .logo {
     height: 3rem;
     position: absolute;
@@ -37,6 +39,7 @@
     flex-grow: 1;
     display: flex;
     justify-content: space-around;
+
     li {
       display: inline-block;
       line-height: 3.7rem;
@@ -44,18 +47,22 @@
       border-bottom: 4px solid transparent;
       text-align: center;
       cursor: pointer;
+
       > i {
         font-size: 0.9rem;
         margin-right: 0.8rem;
       }
+
       > span {
         font-size: 1.2rem;
         font-weight: bold;
       }
+
       &:hover {
         .liHover();
       }
     }
+
     .liIn {
       .liHover();
     }
@@ -111,6 +118,7 @@
     background-color: #fff;
     box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.16);
     font-size: 0.9rem;
+
     .tra {
       position: absolute;
       top: -20px;
@@ -120,13 +128,21 @@
       border: 10px solid;
       border-color: transparent transparent #fff;
     }
+
     .count {
       float: left;
     }
+
     > span:last-child {
       float: right;
       color: #1890ff;
       cursor: pointer;
     }
+  }
+}
+
+.dropMenu {
+  li {
+    font-size: 1rem !important;
   }
 }
