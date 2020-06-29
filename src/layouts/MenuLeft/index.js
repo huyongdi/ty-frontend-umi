@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useBoolean } from '@umijs/hooks';
 import menuIcon from '@utils/menuIcon';
-import { Link, useModel, history } from 'umi';
+import { Link } from 'umi';
 import { Menu } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import styles from './index.less';
 import './menu.less';

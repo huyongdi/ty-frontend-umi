@@ -4,7 +4,6 @@ import { useBoolean } from '@umijs/hooks';
 import axios from 'axios';
 import menuIcon from '@utils/menuIcon';
 import { Menu } from 'antd';
-import { useModel } from 'umi';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { AppstoreOutlined, LogoutOutlined } from '@ant-design/icons';

@@ -19,7 +19,6 @@ export default {
   state: initState,
   reducers: {
     updateKey(state, data) {
-      console.log(data);
       return produce(state, draftState => {
         if (Array.isArray(data)) {
           // 不是第一层的传数组 比如['activeMenu',{}]
@@ -41,7 +40,6 @@ export default {
   effects: {
     // 要拿的东西有点多，递归不方便处理，后面看基础服务的更新再调整
     async setActiveByCurrent(payload, rootState) {
-      console.log('路由变化了');
       const { allMenus } = rootState.system;
       allMenus.forEach(menus => {
         menus.child.forEach(item => {
