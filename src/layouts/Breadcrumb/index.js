@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Breadcrumb, Button, message } from 'antd';
 import { useSelector } from 'react-redux';
-
+import { Prompt } from 'umi';
 import './index.less';
 
 export default props => {
@@ -11,13 +11,12 @@ export default props => {
 
   // 刷新
   const refreshCurrentPage = () => {
-    props.history.replace(props.location.pathname);
+    props.history.go(props.location.pathname);
   };
-
   // 返回
   const backPage = () => {
     if (props.history.location.pathname === '/yjxx') {
-      message.info('再返回就到登录了!');
+      // message.info('再返回就到登录了!')
     } else {
       props.history.goBack();
     }
@@ -39,6 +38,12 @@ export default props => {
           <i className="iconfont iconfanhui" />
           返回
         </span>
+        {/*<Prompt*/}
+        {/*  message={async location => {*/}
+        {/*    await window.source.cancel()*/}
+        {/*    return true*/}
+        {/*  }}*/}
+        {/*/>*/}
       </div>
     </div>
   );

@@ -7,5 +7,10 @@ import { useModel } from 'umi';
 import styles from './index.less';
 
 export default props => {
+  console.log(props);
+  useEffect(() => {
+    console.log(666);
+    axios.get('/mock/tags');
+  }, []);
   return <div className={styles.loginWrap}>电话预警</div>;
 };

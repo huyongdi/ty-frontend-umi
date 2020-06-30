@@ -19,7 +19,9 @@ export default {
   state: initState,
   reducers: {
     updateKey(state, data) {
-      return produce(state, draftState => {
+      console.log(state);
+      console.log(data);
+      let nextState = produce(state, draftState => {
         if (Array.isArray(data)) {
           // 不是第一层的传数组 比如['activeMenu',{}]
           const len = data.length;
@@ -35,11 +37,14 @@ export default {
           }
         }
       });
+      console.log(nextState);
+      return nextState;
     },
   },
   effects: {
     // 要拿的东西有点多，递归不方便处理，后面看基础服务的更新再调整
     async setActiveByCurrent(payload, rootState) {
+      console.log(payload);
       const { allMenus } = rootState.system;
       allMenus.forEach(menus => {
         menus.child.forEach(item => {

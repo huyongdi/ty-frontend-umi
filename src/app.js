@@ -23,6 +23,8 @@ export function render(oldRender) {
 
 //在初始加载和路由切换时做一些事情
 export function onRouteChange(obj) {
+  // await window.source.cancel()
+  console.log(window.axiosArr);
   const { pathname } = obj.location;
   if (pathname !== '/login')
     store.dispatch.system.setActiveByCurrent(obj.location.pathname);

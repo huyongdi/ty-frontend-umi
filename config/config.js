@@ -17,6 +17,7 @@ export default defineConfig({
     '@utils': '@/utils',
     '@components': '@/components',
   },
+  mock: {},
   routes,
   chainWebpack(memo, { env, webpack, createCSSRule }) {
     themeArr.forEach(({ name, path }) => {

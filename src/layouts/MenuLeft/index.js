@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useBoolean } from '@umijs/hooks';
 import menuIcon from '@utils/menuIcon';
 import { Link } from 'umi';

@@ -2,6 +2,10 @@ import axios from 'axios';
 import { Notification } from 'antd';
 import store from '@/stores';
 
+const CancelToken = axios.CancelToken;
+window.axiosArr = [];
+// window.source = (axios.CancelToken).source()
+
 // 根据code弹出提示
 const showMsg = (code, message) => {
   let type = null,
@@ -27,12 +31,23 @@ const showMsg = (code, message) => {
 };
 
 axios.defaults.timeout = 60000;
-axios.defaults.baseURL = 'f-api/';
+// axios.defaults.baseURL = 'f-api/'
+// axios.defaults.cancelToken = window.source.token
 // 添加请求拦截器
 axios.interceptors.request.use(
   function(config) {
     // 在发送请求之前做些什么
     config.headers.authentication = localStorage.getItem('af-token');
+    // config.cancelToken = new CancelToken(function executor(c) {
+    //   // executor 函数接收一个 cancel 函数作为参数
+    //   config.cancel = c
+    // })
+    if (config.url.includes('mock')) {
+      // mock的数据
+    } else {
+      config.url = 'f-api/' + config.url;
+    }
+    // window.axiosArr.push(config)
     return config;
   },
   function(error) {
