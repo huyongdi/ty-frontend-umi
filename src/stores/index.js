@@ -5,7 +5,7 @@ import createRematchPersist from '@rematch/persist';
 const persistPlugin = createRematchPersist({
   key: 'af',
   keyPrefix: 'ty-',
-  whitelist: ['system'],
+  whitelist: ['system', 'backEnd'],
   serialize: true,
   // blacklist: ['abc'],
   throttle: 1,

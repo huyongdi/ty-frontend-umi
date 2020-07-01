@@ -99,7 +99,7 @@ export default props => {
   const BACK_URL = process.env.BACK_PATH || `${window.location.hostname}:89`;
   useEffect(() => {
     getMsgCount(setUnread);
-    getMessage(unread, setUnread, idCard);
+    // getMessage(unread, setUnread, idCard);
     userAction(unread);
     return () => {
       clearInterval(moveInterval);

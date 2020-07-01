@@ -8,6 +8,7 @@ export default [
       // 预警信息
       { path: '/yjxx', component: '@/pages/warnInformation/phone' },
       { path: '/wnyjxx', component: '@/pages/warnInformation/net' },
+      { path: '/warnDetail', component: '@/pages/warnDetail' },
     ],
   },
 ];

@@ -136,7 +136,7 @@ export default props => {
             selectCode: [menusRes[0].child[0].child[0].code],
           },
         ]);
-        props.history.push('/yjxx');
+        props.history.replace('/yjxx');
       }
     }
   };

@@ -2,9 +2,12 @@ import { history } from 'umi';
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from '@/stores';
+
 import { getPersistor } from '@rematch/persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import '@/utils/axiosConfig';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale/zh_CN';
 
 const persistor = getPersistor();
 
@@ -23,8 +26,8 @@ export function render(oldRender) {
 
 //在初始加载和路由切换时做一些事情
 export function onRouteChange(obj) {
-  // await window.source.cancel()
-  console.log(window.axiosArr);
+  window.axiosArr.forEach(item => item());
+  window.axiosArr = [];
   const { pathname } = obj.location;
   if (pathname !== '/login')
     store.dispatch.system.setActiveByCurrent(obj.location.pathname);
@@ -34,7 +37,9 @@ export function onRouteChange(obj) {
 export function rootContainer(container, { routes, plugin, history }) {
   return (
     <Provider store={store}>
-      <PersistGate persistor={persistor}>{container}</PersistGate>
+      <ConfigProvider locale={zhCN}>
+        <PersistGate persistor={persistor}>{container}</PersistGate>
+      </ConfigProvider>
     </Provider>
   );
 }
