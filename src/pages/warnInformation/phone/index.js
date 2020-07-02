@@ -328,21 +328,9 @@ export default props => {
     props.history.push({
       pathname: '/warnDetail',
       state: {
-        jumpInfo: { ...record, axiosType: 'phone' },
+        jumpInfo: { ...record, axiosType: 'phone', pageType: 1 },
       },
     });
-    // let id = record.id
-    // let victimPhone = record.victim.phone
-    // let victimIdcard = record.victim.idcard
-    //
-    // let obj = {
-    //   activeNameC: '预警详情',
-    //   parentNameC: '预警 / 电话预警 / 预警信息 / '
-    // }
-    // this.props.updateKeyC(obj)
-    // localStorage.setItem('af-nav', JSON.stringify(obj))
-    // const tabInfo = SERVICE_MAP.Yjfk({phone: victimPhone, id, victimIdcard})
-    // this.props.history.push(`/${tabInfo.path}`, {phone: victimPhone, id, victimIdcard, pageType: 1})
   };
 
   // 根据分辨率改变scroll

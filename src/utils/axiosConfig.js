@@ -71,7 +71,7 @@ axios.interceptors.response.use(
       // network 200
       res.data.code && showMsg(res.data.code, res.data.message || '');
       if (res.data.code === 200 || res.data.statusCode === '201') {
-        return res.data.result;
+        return res.data.result || true;
       } else {
         return null;
       }

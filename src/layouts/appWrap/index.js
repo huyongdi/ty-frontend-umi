@@ -24,6 +24,7 @@ export default props => {
     is1600: document.body.clientWidth === 1600,
     dateFormat: 'YYYY-MM-DD HH:mm:ss', // 转化为时分秒：比如td显示
     pickFormat: 'YYYY-MM-DD HH:mm', // 转化为时分，比如时间选择器
+    showTime: 'HH:mm',
   };
   return (
     <div className={styles.appWrap}>

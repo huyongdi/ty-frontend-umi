@@ -148,11 +148,716 @@
         }
       }
     }
+    .yjData {
+      .dataC {
+        height: 200px;
+        position: relative;
+
+        .bcFont {
+          position: absolute;
+          left: 65px;
+          top: 45px;
+          text-align: center;
+          width: 72px;
+          color: #fff;
+
+          .extCircle {
+            position: absolute;
+            top: -10px;
+            left: -3px;
+            display: inline-block;
+            width: 77px;
+            height: 77px;
+            border-radius: 50%;
+            background: rgba(255, 90, 90, 0.19);
+            //border: 1px solid rgba(255,90,90,.19);
+            .innCircle {
+              display: inline-block;
+              margin-top: 13px;
+              width: 50px;
+              height: 50px;
+              line-height: 50px;
+              border-radius: 50%;
+              background-image: linear-gradient(
+                180deg,
+                #ff9393 0%,
+                #ff5a5a 100%
+              );
+            }
+          }
+
+          i {
+            font-size: 38px;
+          }
+
+          .type {
+            display: block;
+            width: 200px;
+            margin-top: 100px;
+            position: absolute;
+            left: -65px;
+            text-align: center;
+          }
+
+          .status {
+            margin-top: 10px;
+            background: #ff5a5a;
+            border-radius: 14px;
+            display: block;
+          }
+        }
+
+        > img {
+          height: 200px;
+          width: 200px;
+        }
+
+        .dataRight {
+          width: calc(~'100% - 200px');
+          float: right;
+          border-bottom: 1px solid #ddd;
+          border-right: 1px solid #ddd;
+
+          > div {
+            width: 100%;
+            height: 40px;
+            text-align: center;
+          }
+        }
+      }
+    }
+    .tName {
+      width: 20%;
+      height: 100%;
+      line-height: 40px;
+      display: inline-block;
+      background: #f0f2f5;
+      border-top: 1px solid #ddd;
+      border-left: 1px solid #ddd;
+      border-right: 1px solid #ddd;
+      color: #666;
+      text-align: right;
+      padding-right: 23px;
+    }
+    .tValue {
+      line-height: 40px;
+      border-top: 1px solid #ddd;
+      width: 30%;
+      height: 100%;
+      display: inline-block;
+      color: #333;
+      position: relative;
+      text-align: left;
+      padding-left: 23px;
+
+      .rydangan {
+        position: absolute;
+        right: 30px;
+        color: #2a8dff;
+        cursor: pointer;
+      }
+
+      .inBlack {
+        position: absolute;
+        right: 30px;
+      }
+    }
+    .dTop {
+      margin-top: 10px;
+    }
+    .personData {
+      margin: 10px 0;
+      .dataRight {
+        width: 100% !important;
+      }
+    }
+    // 处置反馈
+    .cz {
+      margin-top: 20px;
+
+      .title {
+        margin-top: 20px;
+
+        .one {
+          color: #333;
+          width: 139px;
+          height: 44px;
+          //background: #F2F2F2;
+          border: 1px solid #ddddd0;
+          line-height: 44px;
+          text-align: center;
+          cursor: pointer;
+          display: inline-block;
+          margin-right: 32px;
+          position: relative;
+
+          > span {
+            display: inline-block;
+            margin-left: 5px;
+          }
+
+          //.ra {
+          //  display: inline-block;
+          //  width: 14px;
+          //  height: 14px;
+          //  border-radius: 50%;
+          //  background: #FFFFFF;
+          //  border: 1px solid rgba(0, 0, 0, 0.15);
+          //  margin-right: 8px;
+          //  position: relative;
+          //  top: 2px;
+          //}
+
+          i {
+            margin-left: 8px;
+            color: #b1b1b1;
+            font-size: 12px;
+          }
+
+          .iconbenren {
+            margin-left: -16px;
+            float: right;
+            font-size: 14px;
+            margin-right: 10px;
+            line-height: 48px;
+          }
+        }
+
+        .one.in {
+          //background-image: linear-gradient(90deg, #4FADFF 0%, #3275FF 98%);
+          //color: #fff;
+          border: 1px solid #2a8dff;
+
+          i {
+            color: #2a8dff;
+          }
+        }
+      }
+
+      .content {
+        overflow-y: auto;
+        overflow-x: auto;
+        background: #f9f9f9;
+        border: 1px solid #ddd;
+        width: 100%;
+        //width: 1600px;
+        height: 372px;
+        padding: 28px 28px 0 28px;
+
+        .noSmall {
+          flex-shrink: 0;
+        }
+
+        .svg {
+          float: left;
+          margin: 140px 44px 0 25px;
+          width: 25px;
+          height: 25px;
+        }
+
+        .one {
+          width: 182px;
+          height: 316px;
+          background: #fff;
+          float: left;
+          position: relative;
+          padding: 44px 51px 0;
+
+          .leftName {
+            position: absolute;
+            left: -16px;
+            top: 110px;
+            background: #4194ff;
+            box-shadow: 0 -2px 12px 0 rgba(63, 141, 255, 0.26);
+            border-radius: 18px;
+            width: 32px;
+            height: 96px;
+            color: #fff;
+            justify-content: center;
+            text-align: center;
+            writing-mode: vertical-lr;
+            display: flex;
+            flex-direction: column;
+          }
+
+          .leftNameTop {
+            height: 160px;
+            top: 80px;
+          }
+
+          .top,
+          .bot {
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            background: #e6e6e6;
+            cursor: pointer;
+            //overflow: hidden;
+            z-index: 100;
+            position: relative;
+
+            .topImg {
+              display: inline-block;
+              color: #b1b1b1;
+              position: absolute;
+            }
+
+            .br {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            .dhin {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            .pian {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            .rSvg {
+              display: none;
+              width: 16px;
+              height: 16px;
+            }
+
+            .gx {
+              position: absolute;
+              top: 0;
+              right: 10px;
+            }
+
+            > span {
+              position: absolute;
+              color: #999;
+              top: 90px;
+              left: 0;
+              width: 80px;
+              text-align: center;
+            }
+          }
+
+          .top.in,
+          .bot.in {
+            background-image: linear-gradient(180deg, #4fadff 0%, #3274ff 100%);
+
+            .rSvg {
+              display: block;
+            }
+
+            .topImg {
+              color: #fff;
+            }
+
+            > span {
+              color: #333;
+            }
+          }
+
+          .bot:not(.in),
+          .top:not(.in) {
+            &:hover {
+              background: #cbd9ec;
+            }
+          }
+
+          .green.in {
+            background-image: linear-gradient(180deg, #4fff98 0%, #00b91d 99%);
+          }
+
+          .red.in {
+            background-image: linear-gradient(180deg, #ff7272 0%, #ff4141 100%);
+          }
+
+          .bot {
+            margin-top: 70px;
+
+            .qy {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            > span {
+              top: 90px;
+            }
+
+            .dhout {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            .pianY {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            .qz {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+
+            .zdy {
+              top: 6px;
+              left: 17px;
+              font-size: 45px;
+            }
+          }
+
+          .bot.in {
+          }
+        }
+
+        .greenOne {
+          .in {
+          }
+        }
+
+        .fkOne {
+          width: 400px;
+          padding: 10px 20px 0;
+
+          > span {
+            display: block;
+            margin-bottom: 5px;
+          }
+
+          .warp {
+            display: block;
+            width: 14rem;
+          }
+        }
+
+        .bpOne {
+          width: 460px;
+          padding: 10px 20px 0;
+
+          .fkOne {
+            display: inline-block;
+            width: 200px;
+            margin-right: 10px;
+
+            > span {
+              display: block;
+              margin-bottom: 5px;
+            }
+
+            .warp {
+              display: block;
+              width: 14rem;
+            }
+          }
+        }
+
+        // 亲友内容
+        .qyContent {
+          display: flex;
+          //height: 100%;
+          //width: 1290px;
+          width: auto;
+          padding: 0 51px;
+
+          .qyOne {
+            margin-top: 20px;
+            height: 280px;
+            width: 200px;
+            border: 1px solid #ddd;
+            text-align: center;
+            padding: 12px;
+            cursor: pointer;
+            margin-right: 20px;
+
+            img {
+              width: 130px;
+              height: 150px;
+              //background: red;
+              margin-bottom: 8px;
+            }
+
+            > span {
+              display: block;
+              color: #333;
+            }
+
+            .name {
+              font-weight: bold;
+              font-size: 16px;
+            }
+
+            .maybe {
+              i {
+                margin-right: 5px;
+                color: #1890ff;
+              }
+            }
+
+            .tel {
+              color: #999;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+
+          .qyOne.in {
+            border: 1px solid red;
+          }
+        }
+
+        // 自定义短信模板
+        .dxContent {
+          padding: 30px 51px 0;
+          width: 1250px;
+
+          .mbOne {
+            cursor: pointer;
+            width: 550px;
+            height: 70px;
+            border: 1px solid #ddd;
+            padding: 10px 10px;
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+            margin-right: 20px;
+
+            .look {
+              position: absolute;
+              right: 20px;
+              top: 12px;
+              color: #2a8dff;
+              cursor: pointer;
+            }
+
+            .use {
+              position: absolute;
+              right: 20px;
+              top: 35px;
+              color: #2a8dff;
+              cursor: pointer;
+            }
+
+            .mbT {
+              color: #000;
+              display: block;
+              margin-bottom: 5px;
+            }
+
+            .mbC {
+              color: #666;
+              display: block;
+              width: 380px;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+          }
+
+          .mbOne.in {
+            border: 1px solid #367bff;
+
+            .mbT {
+              color: #4194ff;
+            }
+          }
+
+          .btn {
+            position: absolute;
+            left: 700px;
+            width: 100px;
+            top: 80px;
+
+            > button {
+              margin-bottom: 10px;
+            }
+          }
+
+          .textareaOne {
+            margin-bottom: 15px;
+
+            > span {
+              display: block;
+              margin-right: 10px;
+              width: 80px;
+              margin-bottom: 10px;
+              white-space: nowrap;
+            }
+
+            > textarea {
+              display: block;
+              width: 500px;
+              height: 160px;
+            }
+
+            > input {
+              float: left;
+              width: 500px;
+            }
+          }
+        }
+
+        // 电话未接通
+        .notConnect {
+          width: 300px;
+          .connectOne {
+            margin-bottom: 20px;
+
+            .warp {
+              width: 14rem;
+              margin-top: 10px;
+            }
+          }
+        }
+      }
+
+      .btn {
+        text-align: center;
+        padding-top: 24px;
+
+        i {
+          margin-right: 8px;
+        }
+
+        > span {
+          display: inline-block;
+          width: 112px;
+          height: 32px;
+          line-height: 32px;
+          border-radius: 2px;
+          cursor: pointer;
+        }
+
+        .submit {
+          background: #2a8dff;
+          color: #fff;
+          margin-right: 10px;
+        }
+
+        .submitAgain {
+          background: #fff;
+          border: 1px solid #ddd;
+        }
+      }
+    }
+    .titleShow {
+      margin-top: 23px;
+      z-index: 100;
+      height: 37px;
+      margin-bottom: -1px;
+      display: flex;
+
+      .one {
+        float: left;
+        z-index: 100;
+        width: 129px;
+        height: 37px;
+        //height: 100%;
+        line-height: 37px;
+        background: #ededed;
+        text-align: center;
+        margin-right: 5px;
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+      }
+
+      .one.in {
+        background: #f9f9f9;
+        border-top: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-left: 1px solid #ddd;
+      }
+    }
+    .phoneWrap,
+    .smsWrap,
+    .doorWrap {
+      display: flex;
+      justify-content: flex-start;
+    }
+    .doorWrap {
+      flex-wrap: wrap;
+      .fkOne {
+        width: 250px !important;
+      }
+    }
+    .zrr,
+    .yjz {
+      width: 100%;
+      display: inline-block;
+      margin-top: 20px;
+
+      .content {
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .one {
+        .tName {
+          width: 20%;
+        }
+
+        .tValue {
+          width: 80%;
+        }
+      }
+    }
+    // 案件
+    .ajDiv {
+      height: auto !important;
+      overflow: hidden;
+    }
+    .ajName {
+      border-right: none !important;
+      border-bottom: 1px solid #ddd;
+      //height: 84px;
+      //height: auto !important;
+    }
+    .ajDetail {
+      float: left;
+      width: 80% !important;
+      height: auto !important;
+      border-left: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      //white-space: nowrap;
+      //overflow: hidden;
+      //text-overflow: ellipsis;
+    }
+    .hideSelect {
+      position: relative;
+
+      //.rightSelect1 {
+      //  position: absolute;
+      //  top: -67px;
+      //  right: 0;
+      //}
+      //
+      //.rightSelect2 {
+      //  position: absolute;
+      //  top: 5px;
+      //  right: 0;
+      //}
+    }
   }
 
   .relationWrap {
   }
 
   .mapWrap {
+  }
+}
+
+.smsModal {
+  .one {
+    margin-bottom: 10px;
+  }
+
+  .smsC {
+    padding-bottom: 20px;
   }
 }

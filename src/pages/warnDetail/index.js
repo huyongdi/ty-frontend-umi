@@ -32,10 +32,14 @@ export default props => {
     // 详情页面数据
     tType: 1,
   });
+  const [peopleArr, setPeople] = useState(null);
+  const [smsArr, setSms] = useState([]);
+
   let timeInterval = null; // 剩余时间interval
 
   useEffect(() => {
     getDetail();
+    getSms();
     return () => {
       clearInterval(timeInterval);
     };
@@ -73,11 +77,33 @@ export default props => {
       detailUrl = `antifraud/fraud/wash/detail/net/${jumpInfo.id}`;
     }
     const result = await axios.get(detailUrl);
+    getRelation(result.victim.idcard); // 带着受害人的身份证号去找亲友
     setDetail(draft => {
       for (let i in result) {
         draft[i] = result[i];
       }
     });
+  };
+
+  // 获取亲友信息
+  const getRelation = async sfzhm => {
+    let result = await axios.post('antifraud/relation/about', {
+      sfzhm,
+      formData: true,
+    });
+    result && setPeople(result);
+  };
+
+  // 获取短信模板
+  const getSms = async () => {
+    let result = await axios.post('antifraud/smsTeamplte/page', {
+      pageNum: 1,
+      pageSize: 1000,
+      enabled: 'Y',
+      // level: parseInt(obj.level),
+      // fraudType: parseInt(obj.fraudType),
+    });
+    result && setSms(result.records);
   };
 
   const detailChange = (key, val) => {
@@ -88,7 +114,9 @@ export default props => {
 
   const { tType } = detailPage;
   const { pageType } = jumpInfo; // 1 -预警信息 2-预警分发 3-已反馈 4-无效预警
-
+  console.log(props);
+  console.log(detailPage);
+  console.log(jumpInfo);
   return (
     <div className={styles.mainWrap}>
       <div className={styles.top}>
@@ -159,7 +187,13 @@ export default props => {
 
       <div className={styles.main}>
         {tType === 1 && detailPage.id && (
-          <PageDetail {...detailPage} {...props} />
+          <PageDetail
+            {...jumpInfo}
+            {...props}
+            {...detailPage}
+            peopleArr={peopleArr}
+            smsArr={smsArr}
+          />
         )}
         {tType === 2 && <PageRelation />}
         {tType === 3 && <PageMap />}

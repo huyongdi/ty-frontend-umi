@@ -35,8 +35,9 @@ export default {
       let typeArr = [
         'FRAUD_LEVEL',
         'FRAUD_SOURCE',
+        'FRAUD_TYPE',
         'PROCESS_TYPE',
-        'FRAUD_LEVEL',
+        'PHONE_TYPE',
       ];
       typeArr.forEach(type => {
         axios

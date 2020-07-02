@@ -2,7 +2,7 @@ import { history } from 'umi';
 import React from 'react';
 import { Provider } from 'react-redux';
 import store from '@/stores';
-
+import '@/assets/font/iconfont';
 import { getPersistor } from '@rematch/persist';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import '@/utils/axiosConfig';

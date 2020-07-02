@@ -12,6 +12,7 @@ const getColumns = (
   listCheckboxChange,
   showTransModal,
   showRejectModal,
+  jumpToDetail,
 ) => {
   return [
     {
@@ -188,7 +189,7 @@ const getColumns = (
       render: (text, record) => {
         return (
           <div className={styles.opWrap}>
-            <a onClick={() => this.jumpToFK(record)} className={styles.fkBtn}>
+            <a onClick={() => jumpToDetail(record)} className={styles.fkBtn}>
               <i className="iconfont iconfankui opIcon" />
               反馈
             </a>
@@ -362,6 +363,15 @@ export default props => {
     });
   };
 
+  const jumpToDetail = record => {
+    props.history.push({
+      pathname: '/warnDetail',
+      state: {
+        jumpInfo: { ...record, axiosType: 'net', pageType: 1 },
+      },
+    });
+  };
+
   // 根据分辨率改变scroll
   let scroll = {};
   if (props.is1920) {
@@ -380,6 +390,7 @@ export default props => {
     listCheckboxChange,
     showTransModal,
     showRejectModal,
+    jumpToDetail,
   );
 
   return (

@@ -4,7 +4,8 @@ import themeArr from './theme';
 
 export default defineConfig({
   ignoreMomentLocale: false,
-  dynamicImport: {}, // 按需加载
+  // dynamicImport: {}, // 按需加载
+  runtimePublicPath: true,
   nodeModulesTransform: {
     // 设置 node_modules 目录下依赖文件的编译方式
     type: 'none',
@@ -19,6 +20,7 @@ export default defineConfig({
   },
   mock: {},
   routes,
+  headScripts: [{ src: '/iconfont.js' }],
   chainWebpack(memo, { env, webpack, createCSSRule }) {
     themeArr.forEach(({ name, path }) => {
       memo
