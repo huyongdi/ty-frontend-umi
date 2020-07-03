@@ -35,6 +35,7 @@ export default props => {
     tType: 1,
   });
   const [peopleArr, setPeople] = useState(null);
+  const [traArr, setTra] = useState([]);
   const [smsArr, setSms] = useState([]);
   const [repeatShow, setRepeat] = useState(false);
 
@@ -81,6 +82,7 @@ export default props => {
     }
     const result = await axios.get(detailUrl);
     getRelation(result.victim.idcard); // 带着受害人的身份证号去找亲友
+    getTra(result.victim.phone); // 带着受害人的号码去查轨迹
     setDetail(draft => {
       for (let i in result) {
         draft[i] = result[i];
@@ -95,6 +97,19 @@ export default props => {
       formData: true,
     });
     result && setPeople(result);
+  };
+
+  // 获取轨迹信息
+  const getTra = async phone => {
+    let result = await axios.post('antifraud/trace/phone/between', {
+      st: props
+        .moment()
+        .subtract(1, 'day')
+        .valueOf(),
+      et: props.moment().valueOf(),
+      value: phone,
+    });
+    result && Array.isArray(result) && setTra(result);
   };
 
   // 获取短信模板
@@ -217,9 +232,12 @@ export default props => {
               addToBlack={addToBlack}
             />
           )}
-          {tType === 2 && <PageRelation />}
-          {tType === 3 && <PageMap />}
-          {pageType !== 4 && repeat && repeat.length > 0 && (
+          {tType === 2 && <PageRelation peopleArr={peopleArr} />}
+          {tType === 3 && (
+            <PageMap {...jumpInfo} {...props} {...detailPage} traArr={traArr} />
+          )}
+
+          {pageType !== 4 && tType === 1 && repeat && repeat.length > 0 && (
             <span className={styles.openData} onClick={showRepeat}>
               <i className="iconfont iconqizhi1" />
               {rawType === 8 ? '部级重复预警' : '互联网重复预警'}

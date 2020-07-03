@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Input, Button, message, Modal, Select, DatePicker } from 'antd';
+import {
+  Input,
+  Button,
+  message,
+  Modal,
+  Select,
+  DatePicker,
+  TreeSelect,
+} from 'antd';
 import { SearchOutlined, ReloadOutlined } from '@ant-design/icons';
 import reg from '@utils/reg';
 
@@ -26,9 +34,19 @@ export default props => {
     bankcard: null, //银行卡号
     idcard: null, //身份证号
     website: null, // 涉案网址
+
+    orgType: '', // 分发至
+    time0: '', // 是否超时
+
+    fkOrg: null, // 反馈单位
+    moreFK: '', // 多次反馈
+    fkZT: '', // 反馈状态
+    czFS: '', // 处置方式
+    bpMoney: null, // 被骗金额
+    qzMoney: null, // 劝阻金额
   };
   const [condition, setCondition] = useImmer(initState);
-
+  const { nextOrg, allOrg } = useSelector(state => state.backEnd);
   const changeData = (key, val) => {
     setCondition(draft => {
       draft[key] = val;
@@ -89,9 +107,14 @@ export default props => {
     });
   };
 
-  const { FRAUD_LEVEL, FRAUD_SOURCE, PROCESS_TYPE, FRAUD_TYPE } = useSelector(
-    state => state.backEnd,
-  );
+  const {
+    FRAUD_LEVEL,
+    FRAUD_SOURCE,
+    PROCESS_TYPE,
+    FRAUD_TYPE,
+    HANDLE_RESULT,
+  } = useSelector(state => state.backEnd);
+  const { type } = props;
   return (
     <div className={styles.topSearch}>
       <div className={styles.top}>
@@ -210,7 +233,7 @@ export default props => {
               })}
           </Select>
         </div>
-        {props.type === 1 && (
+        {[1, 3, 5].includes(type) && (
           <>
             <div className={styles.one}>
               通话时长>(S)：
@@ -230,7 +253,43 @@ export default props => {
             </div>
           </>
         )}
-        {props.type === 2 && (
+
+        {[3, 4].includes(type) && (
+          <>
+            <div className={styles.one}>
+              分发至：
+              <Select
+                className={styles.seniorSelect}
+                value={condition.orgType}
+                onChange={v => changeData('orgType', v)}
+              >
+                <Select.Option value="">全部</Select.Option>
+                {nextOrg &&
+                  nextOrg.map(item => {
+                    return (
+                      <Select.Option key={item.code} value={item.code}>
+                        {item.name}
+                      </Select.Option>
+                    );
+                  })}
+              </Select>
+            </div>
+            <div className={styles.one}>
+              是否超时：
+              <Select
+                className={styles.seniorSelect}
+                value={condition.timeO || undefined}
+                onChange={v => changeData('timeO', v)}
+              >
+                <Select.Option value="">全部</Select.Option>
+                <Select.Option value="1">正常</Select.Option>
+                <Select.Option value="2">超时</Select.Option>
+              </Select>
+            </div>
+          </>
+        )}
+
+        {[2, 4, 6, 8].includes(type) && (
           <>
             <div className={styles.one}>
               受害人QQ：
@@ -267,28 +326,110 @@ export default props => {
           </>
         )}
 
-        <div className={styles.one}>
-          状态：
-          <Select
-            className={styles.seniorSelect}
-            value={condition.processType}
-            onChange={v => changeData('processType', v)}
-          >
-            <Select.Option value="">全部</Select.Option>
-            {PROCESS_TYPE &&
-              PROCESS_TYPE.map(item => {
-                // if (item.cfgValue === '分发' || item.cfgValue === '回访' || item.cfgValue === '反馈') {
-                //   return null
-                // } else {
-                return (
-                  <Select.Option key={item.cfgKey} value={item.cfgKey}>
-                    {item.cfgValue}
-                  </Select.Option>
-                );
-                // }
-              })}
-          </Select>
-        </div>
+        {type === 1 && (
+          <div className={styles.one}>
+            状态：
+            <Select
+              className={styles.seniorSelect}
+              value={condition.processType}
+              onChange={v => changeData('processType', v)}
+            >
+              <Select.Option value="">全部</Select.Option>
+              {PROCESS_TYPE &&
+                PROCESS_TYPE.map(item => {
+                  if (
+                    item.cfgValue === '分发' ||
+                    item.cfgValue === '回访' ||
+                    item.cfgValue === '反馈'
+                  ) {
+                    return null;
+                  } else {
+                    return (
+                      <Select.Option key={item.cfgKey} value={item.cfgKey}>
+                        {item.cfgValue}
+                      </Select.Option>
+                    );
+                  }
+                })}
+            </Select>
+          </div>
+        )}
+
+        {[7, 8].includes(type) && (
+          <>
+            <div className={styles.one}>
+              反馈单位：
+              <TreeSelect
+                style={{ width: '265px' }}
+                value={condition.fkOrg || undefined}
+                dropdownStyle={{ maxHeight: 400, overflow: 'auto' }}
+                treeData={allOrg}
+                placeholder="请选择单位"
+                className={styles.seniorSelect}
+                treeDefaultExpandAll
+                onChange={v => changeData('fkOrg', v)}
+              />
+            </div>
+            <div className={styles.one}>
+              多次反馈：
+              <Select
+                className={styles.seniorSelect}
+                value={condition.moreFK}
+                onChange={v => changeData('moreFK', v)}
+              >
+                <Select.Option value="">全部</Select.Option>
+                <Select.Option value={2}>多次</Select.Option>
+                <Select.Option value={1}>单次</Select.Option>
+              </Select>
+            </div>
+            <div className={styles.one}>
+              反馈状态：
+              <Select
+                className={styles.seniorSelect}
+                value={condition.fkZT}
+                onChange={v => changeData('fkZT', v)}
+              >
+                <Select.Option value="">全部</Select.Option>
+                <Select.Option value={1}>正常</Select.Option>
+                <Select.Option value={2}>超时</Select.Option>
+              </Select>
+            </div>
+            <div className={styles.one}>
+              处置方式：
+              <Select
+                className={styles.seniorSelect}
+                value={condition.czFS}
+                onChange={v => changeData('czFS', v)}
+              >
+                <Select.Option value="">全部</Select.Option>
+                {HANDLE_RESULT &&
+                  HANDLE_RESULT.map(item => {
+                    return (
+                      <Select.Option key={item.cfgKey} value={item.cfgKey}>
+                        {item.cfgValue}
+                      </Select.Option>
+                    );
+                  })}
+              </Select>
+            </div>
+            <div className={styles.one}>
+              被骗金额（元）>：
+              <Input
+                placeholder="请输入被骗金额"
+                value={condition.bpMoney}
+                onChange={v => changeData('bpMoney', v.target.value)}
+              />
+            </div>
+            <div className={styles.one}>
+              劝阻金额（元）>：
+              <Input
+                placeholder="请输入劝阻金额"
+                value={condition.qzMoney}
+                onChange={v => changeData('qzMoney', v.target.value)}
+              />
+            </div>
+          </>
+        )}
         <div className={styles.one}>
           诈骗类型：
           <Select

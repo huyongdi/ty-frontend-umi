@@ -17,6 +17,7 @@ import { useSelector } from 'react-redux';
 import { useImmer } from 'use-immer';
 import mapP from '@img/personM.png';
 import reg from '@utils/reg';
+import { Empty } from '@components';
 
 const { RangePicker } = DatePicker;
 const { Countdown } = Statistic;
@@ -719,7 +720,9 @@ export default props => {
                   </div>
                 );
               })}
-            {(!peopleArr || peopleArr.length === 0) && '暂无关系人'}
+            {(!peopleArr || peopleArr.length === 0) && (
+              <Empty className={styles.noData} content="暂无关系人" />
+            )}
           </div>
         </div>
 

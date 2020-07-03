@@ -15,6 +15,7 @@ export default props => {
     backEnd.getBackEndConfig();
     backEnd.getIdentify();
     backEnd.getNextOrg();
+    backEnd.getAllOrg();
   }, []);
 
   let downProps = {

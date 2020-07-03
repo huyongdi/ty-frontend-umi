@@ -276,6 +276,7 @@ export default props => {
       bankcard: tableObj.bankcard, //银行卡号
       idcard: tableObj.idcard, //身份证号
       website: tableObj.website, // 涉案网址
+      fraudType: tableObj.fraudType,
     };
     setTableInfo(draft => {
       draft.loading = true;
@@ -415,7 +416,7 @@ export default props => {
             onShowSizeChange: pageChange,
             pageSizeOptions,
           }}
-        ></Table>
+        />
         {tableObj.data.length > 0 && props.identify !== 3 && (
           <div className={styles.botOP}>
             <Checkbox checked={allCheck} onChange={allCheckChange}>

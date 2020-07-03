@@ -10,23 +10,8 @@ import { useConfigParse } from '@utils/useParse';
 // import moment from 'moment'
 import { useImmer } from 'use-immer';
 
-const getColumns = (
-  props,
-  listCheckboxChange,
-  showTransModal,
-  showRejectModal,
-  jumpToDetail,
-) => {
+const getColumns = (props, jumpToDetail) => {
   return [
-    {
-      title: '',
-      dataIndex: 'check',
-      width: 50,
-      fixed: props.is1920 ? false : 'left',
-      render: (text, item) => {
-        return <Checkbox checked={text} onChange={listCheckboxChange(item)} />;
-      },
-    },
     {
       title: '编号',
       dataIndex: '_key',
@@ -34,21 +19,7 @@ const getColumns = (
       fixed: props.is1920 ? false : 'left',
       align: 'left',
       render: (text, record) => {
-        return (
-          <span className={styles.tdKey}>
-            {text}
-            {record.repeat && record.repeat.length > 0 && (
-              <Tooltip
-                placement="topLeft"
-                title={`与${record.repeat[0].pusher}(${props
-                  .moment(record.repeat[0].pushTime)
-                  .format(props.dateFormat)})重复`}
-              >
-                <i className="iconfont iconqizhi1" />
-              </Tooltip>
-            )}
-          </span>
-        );
+        return <span className={styles.tdKey}>{text}</span>;
       },
     },
     {
@@ -82,6 +53,14 @@ const getColumns = (
       width: 120,
       render: text => {
         return useConfigParse(text, 'FRAUD_SOURCE');
+      },
+    },
+    {
+      title: '反馈方',
+      dataIndex: 'organName',
+      width: 160,
+      render: text => {
+        return text || '--';
       },
     },
     {
@@ -124,54 +103,63 @@ const getColumns = (
     },
     {
       title: '状态',
-      dataIndex: 'statusDesc',
+      dataIndex: 'expired',
+      width: 114,
+      render: text => {
+        return text ? '正常反馈' : '超时反馈';
+      },
+    },
+    {
+      title: '处置方式',
+      dataIndex: 'resultPhone',
       // width: 150,
       render: (text, record) => {
-        if (text && text.includes('驳回')) {
-          return (
-            <Tooltip
-              placement="topLeft"
-              title={record.backOrganReason}
-              arrowPointAtCenter
-            >
-              <span className={styles.red}>{text}</span>
-            </Tooltip>
-          );
-        } else {
-          return <span>{text}</span>;
-        }
+        let arr = [
+          record.resultPhone,
+          record.resultSms,
+          record.resultVisit,
+        ].filter(item => {
+          return item;
+        });
+        return arr.join(',');
       },
+    },
+    {
+      title: '处置内容',
+      dataIndex: 'handleContentDesc',
+      width: 150,
+      render: text => text || '--',
+    },
+    {
+      title: '被骗金额(元)',
+      dataIndex: 'moneyDefraud',
+      width: 129,
+      render: text => text || '--',
+    },
+    {
+      title: '劝阻金额(元)',
+      dataIndex: 'moneyDissuade',
+      width: 129,
+      render: text => text || '--',
+    },
+    {
+      title: '反馈次数',
+      dataIndex: 'feedbackTimes',
+      width: 120,
+      render: text => text || '--',
     },
     {
       title: '操作',
       dataIndex: 'op',
-      width: props.is1920 ? 210 : 180,
+      width: 100,
       fixed: props.is1920 ? false : 'right',
       render: (text, record) => {
         return (
           <div className={styles.opWrap}>
             <a onClick={() => jumpToDetail(record)} className={styles.fkBtn}>
-              <i className="iconfont iconfankui opIcon" />
-              反馈
+              <i className="iconfont iconxiangqing opIcon" />
+              详情
             </a>
-            {props.identify !== 3 && (
-              <a
-                onClick={() => showTransModal('', record)}
-                className={styles.fkBtn}
-              >
-                <i className="iconfont iconyijiao opIcon" />
-                移交
-              </a>
-            )}
-            {props.identify !== 1 && (
-              <a
-                onClick={() => showRejectModal(record)}
-                className={styles.fkBtn}
-              >
-                <i className="iconfont iconfanhui opIcon" />
-                驳回
-              </a>
-            )}
           </div>
         );
       },
@@ -232,15 +220,24 @@ export default props => {
       startTime: tableObj.startTime, // 开始时间
       endTime: tableObj.endTime, // 结束时间
       source: tableObj.source, // 来源
-      duration: tableObj.callDuration, // 通话时长
-      times: tableObj.callTimes, // 通话次数
-      processType: tableObj.processType, // 状态
+
+      duration: tableObj.callDuration,
+      times: tableObj.callTimes,
+      organCode: tableObj.fkOrg,
+      singleFeedback: tableObj.moreFK,
+      expired: tableObj.fkZT,
+      handleType: tableObj.czFS || null,
+      moneyDefraud: tableObj.bpMoney,
+      moneyDissuade: tableObj.qzMoney,
       fraudType: tableObj.fraudType,
     };
     setTableInfo(draft => {
       draft.loading = true;
     });
-    const result = await axios.post('antifraud/fraud/page/phone', params);
+    const result = await axios.post(
+      'antifraud/fraud/feedback/page/phone',
+      params,
+    );
     setTableInfo(draft => {
       draft.data = result.records.map((item, index) => {
         item._key = index + 1;
@@ -259,67 +256,6 @@ export default props => {
       draft.pageSize = pageSize;
       draft.allCheck = false;
       draft.backCheck = false;
-    });
-  };
-  // 表格上的checkbox改变时
-  const listCheckboxChange = item => e => {
-    let checkedLen = 0; // 选中的长度
-    setTableInfo(draft => {
-      draft.data.forEach(val => {
-        if (val._key === item._key) val.check = e.target.checked;
-        if (val.check) checkedLen += 1;
-      });
-      draft.loading = false;
-    });
-    setAllCheck(checkedLen === tableObj.data.length);
-  };
-  // 全选check改变时
-  const allCheckChange = e => {
-    const flag = e.target.checked;
-    setTableInfo(draft => {
-      draft.data.forEach(val => {
-        val.check = flag;
-      });
-      setAllCheck(e.target.checked);
-    });
-  };
-  // 反选check改变时
-  const backCheckChange = e => {
-    setTableInfo(draft => {
-      draft.data.forEach(val => {
-        val.check = !val.check;
-      });
-      setBackCheck(!backCheck);
-    });
-  };
-  // 移交弹框
-  const showTransModal = (val, isTdObj) => {
-    let ids = [];
-    if (isTdObj) {
-      // 点击的表格上单个移交
-      ids = [{ id: isTdObj.id, version: isTdObj.version }];
-    } else {
-      // 批量
-      tableObj.data.forEach(item => {
-        if (item.check) ids.push({ id: item.id, version: item.version });
-      });
-    }
-
-    if (ids.length > 0) {
-      setTransfer(draft => {
-        draft.transIds = ids;
-        draft.showModal = true;
-      });
-    } else {
-      val && message.warn('请勾选预警！');
-    }
-  };
-  // 驳回弹框
-  // 单个驳回操作
-  const showRejectModal = item => {
-    setReject(draft => {
-      draft.showModal = true;
-      draft.item = item;
     });
   };
 
@@ -341,21 +277,15 @@ export default props => {
       scroll = { y: 'calc(100vh - 32rem)' };
     }
   } else if (props.is1600) {
-    scroll = { y: 'calc(100vh - 32rem)', x: 1700 };
+    scroll = { y: 'calc(100vh - 32rem)', x: 2500 };
   } else {
-    scroll = { y: 'calc(100vh - 27rem)', x: 1700 };
+    scroll = { y: 'calc(100vh - 27rem)', x: 2500 };
   }
-  const columns = getColumns(
-    props,
-    listCheckboxChange,
-    showTransModal,
-    showRejectModal,
-    jumpToDetail,
-  );
+  const columns = getColumns(props, jumpToDetail);
 
   return (
     <>
-      <TopSearch setTableInfo={setTableInfo} getTable={getTable} type={1} />
+      <TopSearch setTableInfo={setTableInfo} getTable={getTable} type={7} />
       <div className={styles.tableC}>
         <span className="lineT">诈骗预警</span>
         <Table
@@ -376,27 +306,6 @@ export default props => {
             pageSizeOptions,
           }}
         />
-        {tableObj.data.length > 0 && props.identify !== 3 && (
-          <div className={styles.botOP}>
-            <Checkbox checked={allCheck} onChange={allCheckChange}>
-              全选
-            </Checkbox>
-            <span
-              className={`${styles.bCheck} ${backCheck ? styles.in : ''}`}
-              onClick={backCheckChange}
-            >
-              反选
-            </span>
-            <Select
-              className={styles.opSelect}
-              placeholder="批量操作"
-              onChange={v => showTransModal(v)}
-              value={allOP}
-            >
-              <Select.Option value="移交">移交</Select.Option>
-            </Select>
-          </div>
-        )}
       </div>
       <TransferModal {...transferData} getTable={getTable} />
       <RejectModal {...rejectData} getTable={getTable} />

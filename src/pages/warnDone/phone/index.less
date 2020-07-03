@@ -1,0 +1,105 @@
+@level1: #00b84e;
+@level2: #399cff;
+@level3: #ff8c1b;
+@level4: #ff4141;
+
+.tableC {
+  background: #fff;
+  padding: 0.5rem 0.5rem 1rem 0.5rem;
+  flex: 1;
+
+  .circle {
+    //float: left;
+    display: inline-block;
+    margin-right: 10px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .level1 {
+    // 低级
+    color: @level1;
+
+    .circle {
+      background-color: @level1;
+    }
+  }
+
+  .level2 {
+    color: @level2;
+
+    .circle {
+      background-color: @level2;
+    }
+  }
+
+  .level3 {
+    color: @level3;
+
+    .circle {
+      background-color: @level3;
+    }
+  }
+
+  .level4 {
+    color: @level4;
+
+    .circle {
+      background-color: @level4;
+    }
+  }
+
+  .tdKey {
+    i {
+      float: right;
+      cursor: pointer;
+      color: #ff5050;
+    }
+  }
+
+  .opWrap {
+    a:not(:last-child) {
+      margin-right: 1rem;
+    }
+    a {
+      i {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+  .botOP {
+    position: relative;
+    bottom: 42px;
+    width: 350px;
+
+    .bCheck {
+      display: inline-block;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+
+    .bCheck.in {
+      background-color: #1890ff;
+      color: #fff;
+    }
+
+    label,
+    .bCheck {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 2px;
+      width: 83px;
+      height: 2rem;
+      line-height: 2rem;
+      text-align: center;
+    }
+
+    .opSelect {
+      margin-left: 10px;
+      width: 120px !important;
+    }
+  }
+}

@@ -6,6 +6,7 @@ const initState = {
   identify: null, // 当前用户的级别 1-市局 2-分局 3-派出所
   parentOrgName: null, // 当前用户上一级的组织名称
   nextOrg: [], // 下一级的部门
+  allOrg: [], // 当前用户下的所有部门
 };
 export default {
   state: initState,
@@ -38,6 +39,7 @@ export default {
         'FRAUD_TYPE',
         'PROCESS_TYPE',
         'PHONE_TYPE',
+        'HANDLE_RESULT',
       ];
       typeArr.forEach(type => {
         axios
@@ -63,6 +65,25 @@ export default {
       axios.get('antifraud/organization/juniors').then(res => {
         this.updateKey({
           nextOrg: res,
+        });
+      });
+    },
+    // 获取当前用户，下级，下下级等叶子数据
+    async getAllOrg(payload, rootState) {
+      axios.get('antifraud/organization/juniors/leaf').then(res => {
+        res.forEach(item => {
+          item.title = item.name;
+          item.value = item.code;
+          item.key = item.code;
+          item.children = item.child.map(val => {
+            val.title = val.name;
+            val.value = val.code;
+            val.key = val.code;
+            return val;
+          });
+        });
+        this.updateKey({
+          allOrg: res,
         });
       });
     },
