@@ -255,7 +255,7 @@ export default props => {
     props.history.push({
       pathname: '/warnDetail',
       state: {
-        jumpInfo: { ...record, axiosType: 'phone', pageType: 1 },
+        jumpInfo: { ...record, axiosType: 'phone', pageType: 2 },
       },
     });
   };

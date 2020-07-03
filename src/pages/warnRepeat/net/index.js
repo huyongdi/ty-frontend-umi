@@ -16,21 +16,7 @@ const getColumns = (props, jumpToDetail) => {
       fixed: props.is1920 ? false : 'left',
       align: 'left',
       render: (text, record) => {
-        return (
-          <span className={styles.tdKey}>
-            {text}
-            {record.repeat && record.repeat.length > 0 && (
-              <Tooltip
-                placement="topLeft"
-                title={`与${record.repeat[0].pusher}(${props
-                  .moment(record.repeat[0].pushTime)
-                  .format(props.dateFormat)})重复`}
-              >
-                <i className="iconfont iconqizhi1" />
-              </Tooltip>
-            )}
-          </span>
-        );
+        return <span className={styles.tdKey}>{text}</span>;
       },
     },
     {
@@ -274,7 +260,7 @@ export default props => {
     props.history.push({
       pathname: '/warnDetail',
       state: {
-        jumpInfo: { ...record, axiosType: 'net', pageType: 1 },
+        jumpInfo: { ...record, axiosType: 'repNet', pageType: 3 },
       },
     });
   };

@@ -433,37 +433,35 @@ export default props => {
 
         {/*如果是已经反馈过的，需要显示责任操作人和处置反馈 列表*/}
 
-        {(pageType === 1 || pageType === 3) &&
-          fraudFeedback &&
-          fraudFeedback.length > 0 && (
-            <div className={styles.zrr}>
-              <span className="lineT">责任操作人</span>
-              <div className={styles.content}>
-                <div className={styles.one}>
-                  <span className={styles.tName}>反馈人</span>
-                  <span className={styles.tValue}>
-                    {fraudInfo.fkPerson.join(' , ')}
-                  </span>
-                </div>
-                <div className={styles.one}>
-                  <span className={styles.tName}>所属单位</span>
-                  <span className={styles.tValue}>
-                    {fraudInfo.fkOrg.join(',')}
-                  </span>
-                </div>
-                <div className={styles.one}>
-                  <span className={styles.tName}>反馈时间</span>
-                  <span className={styles.tValue}>
-                    {fraudFeedback &&
-                      moment(
-                        fraudFeedback[fraudFeedback.length - 1].updated,
-                      ).format(dateFormat)}
-                  </span>
-                </div>
+        {pageType !== 4 && fraudFeedback && fraudFeedback.length > 0 && (
+          <div className={styles.zrr}>
+            <span className="lineT">责任操作人</span>
+            <div className={styles.content}>
+              <div className={styles.one}>
+                <span className={styles.tName}>反馈人</span>
+                <span className={styles.tValue}>
+                  {fraudInfo.fkPerson.join(' , ')}
+                </span>
+              </div>
+              <div className={styles.one}>
+                <span className={styles.tName}>所属单位</span>
+                <span className={styles.tValue}>
+                  {fraudInfo.fkOrg.join(',')}
+                </span>
+              </div>
+              <div className={styles.one}>
+                <span className={styles.tName}>反馈时间</span>
+                <span className={styles.tValue}>
+                  {fraudFeedback &&
+                    moment(
+                      fraudFeedback[fraudFeedback.length - 1].updated,
+                    ).format(dateFormat)}
+                </span>
               </div>
             </div>
-          )}
-        {(pageType === 1 || pageType === 3) &&
+          </div>
+        )}
+        {pageType !== 4 &&
           fraudFeedback &&
           fraudFeedback.map(item => {
             return (

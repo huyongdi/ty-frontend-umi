@@ -32,7 +32,7 @@ export default props => {
     },
   } = useSelector(state => state.system);
   let { nextOrg, identify } = useSelector(state => state.backEnd);
-  // identify = 3
+  identify = 3;
   const [smsModal, setSMSModal] = useImmer({
     show: false,
     detail: null,
@@ -221,6 +221,7 @@ export default props => {
         visitResult: visitResult, // 上门情况
         fraudType: fraudType, // 诈骗类型
         riskLevel: level, // 预警程度
+        fraudTime: fraudTime ? fraudTime.valueOf() : null, // 受骗时间
       },
     };
 
@@ -629,7 +630,7 @@ export default props => {
               />
             </div>
             <div className={styles.fkOne}>
-              <span>受骗时间</span>
+              <span className="required">受骗时间</span>
               <DatePicker
                 className={styles.warp}
                 showTime={props.showTime}
@@ -915,6 +916,20 @@ export default props => {
                       onChange={e =>
                         changeData('moneyDissuade', e.target.value)
                       }
+                    />
+                  </div>
+
+                  <div className={styles.fkOne}>
+                    <span className={feedbackDesc === '1' ? 'required' : ''}>
+                      受骗时间
+                    </span>
+                    <DatePicker
+                      className={styles.warp}
+                      showTime={props.showTime}
+                      format={props.pickFormat}
+                      placeholder="请选择受骗时间"
+                      value={fraudTime}
+                      onChange={date => changeData('fraudTime', date)}
                     />
                   </div>
                   <div className={`${styles.fkOne} ${styles.rightSelect1}`}>

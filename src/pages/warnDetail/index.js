@@ -237,12 +237,15 @@ export default props => {
             <PageMap {...jumpInfo} {...props} {...detailPage} traArr={traArr} />
           )}
 
-          {pageType !== 4 && tType === 1 && repeat && repeat.length > 0 && (
-            <span className={styles.openData} onClick={showRepeat}>
-              <i className="iconfont iconqizhi1" />
-              {rawType === 8 ? '部级重复预警' : '互联网重复预警'}
-            </span>
-          )}
+          {(pageType === 1 || pageType === 2) &&
+            tType === 1 &&
+            repeat &&
+            repeat.length > 0 && (
+              <span className={styles.openData} onClick={showRepeat}>
+                <i className="iconfont iconqizhi1" />
+                {rawType === 8 ? '部级重复预警' : '互联网重复预警'}
+              </span>
+            )}
         </div>
       </div>
 

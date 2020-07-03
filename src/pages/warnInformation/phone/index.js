@@ -154,7 +154,7 @@ const getColumns = (
               <i className="iconfont iconfankui opIcon" />
               反馈
             </a>
-            {props.identify !== 3 && (
+            {props.identify === 1 && (
               <a
                 onClick={() => showTransModal('', record)}
                 className={styles.fkBtn}
@@ -376,7 +376,7 @@ export default props => {
             pageSizeOptions,
           }}
         />
-        {tableObj.data.length > 0 && props.identify !== 3 && (
+        {tableObj.data.length > 0 && props.identify === 1 && (
           <div className={styles.botOP}>
             <Checkbox checked={allCheck} onChange={allCheckChange}>
               全选
