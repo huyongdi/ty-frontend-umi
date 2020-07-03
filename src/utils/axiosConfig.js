@@ -23,6 +23,7 @@ const showMsg = (code, message) => {
   } else if (code === 403) {
     type = 'info';
     messageType = '提示';
+    message = '请重新登录';
     history.push('/login');
   } else {
     type = 'error';
