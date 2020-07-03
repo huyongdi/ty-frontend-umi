@@ -13,6 +13,7 @@ import { useEventTarget, useDebounceFn } from '@umijs/hooks';
 import axios from 'axios';
 // import TYMap, {Popup} from 'tymap'
 import styles from './index.less';
+import { TYMap, Config, TileLayer } from '@tymap/core';
 
 export default props => {
   const [traType, setTra] = useState(1); // 列表模式还是地图模式
@@ -88,11 +89,20 @@ export default props => {
           style={{ marginTop: 20 }}
           scroll={{ y: 'calc(100vh - 28rem)' }}
           pagination={false}
-        ></Table>
+        />
       </div>
       <div className={`${styles.map} ${traType === 2 ? '' : 'hide'}`}>
         <div className={styles.mapC}>
           {
+            <TYMap
+              crs={Config.CRS.BMap}
+              url="http://online{s}.map.bdimg.com/tile/?qt=tile&x={x}&y={y}&z={z}&styles=pl&udt=20150518"
+              center={{ lng: 106.552901, lat: 29.570045 }}
+              zoom={12}
+              boundsOptions={{ maxZoom: 17 }}
+            >
+              <TileLayer.BMap />
+            </TYMap>
             // traType === 2 &&
             // <TYMap className={`${style.echart1} ${style.tyM}`} url={url}
             //        center={mapCenter} zoom={12} boundsOptions={{maxZoom: 17}}
@@ -101,23 +111,23 @@ export default props => {
             //   <Popup position={popups.position} content={popups.popup}/>
             // </TYMap>
           }
-          <div className={styles.mapList}>
+          {/*<div className={styles.mapList}>
             <div>轨迹列表</div>
             <div className={styles.listC}>
               {
-                // traArr.map(item => {
-                //   return <div key={item._key} className={styles.one} onClick={this.leftClick(item)}>
-                //     <div className={styles.addr}>{item.sourceName || '--'}</div>
-                //     <div className={styles.detail}>{item.address}</div>
-                //     <div className={styles.time}>{moment(item.timestamp).format(dateFormat)}</div>
-                //     <i className={`iconfont iconshezhi ${styles.icon}`}/>
-                //     <span className={styles.leftLine}/>
-                //     <span className={styles.rightMark}>人像抓拍</span>
-                //   </div>
-                // })
+                traArr.map(item => {
+                  return <div key={item._key} className={styles.one} onClick={this.leftClick(item)}>
+                    <div className={styles.addr}>{item.sourceName || '--'}</div>
+                    <div className={styles.detail}>{item.address}</div>
+                    <div className={styles.time}>{moment(item.timestamp).format(dateFormat)}</div>
+                    <i className={`iconfont iconshezhi ${styles.icon}`}/>
+                    <span className={styles.leftLine}/>
+                    <span className={styles.rightMark}>人像抓拍</span>
+                  </div>
+                })
               }
             </div>
-          </div>
+          </div>*/}
         </div>
       </div>
     </div>

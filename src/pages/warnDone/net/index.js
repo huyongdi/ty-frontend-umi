@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { message, Table, Checkbox, Tooltip, Select } from 'antd';
+import React, { useEffect } from 'react';
+import { message, Table, Tooltip, Select } from 'antd';
 import axios from 'axios';
-import { TopSearch, TransferModal, RejectModal } from '@components';
+import { TopSearch, BackVisitModal } from '@components';
 import styles from '../phone/index.less';
 import pageSizeOptions from '@utils/pageSizeOptions';
 import { useConfigParse } from '@utils/useParse';
 import { useImmer } from 'use-immer';
 
-const getColumns = (props, jumpToDetail) => {
+const getColumns = (props, jumpToDetail, showBackModal) => {
   return [
     {
       title: '编号',
@@ -218,7 +218,7 @@ const getColumns = (props, jumpToDetail) => {
     {
       title: '操作',
       dataIndex: 'op',
-      width: 100,
+      width: 150,
       fixed: props.is1920 ? false : 'right',
       render: (text, record) => {
         return (
@@ -227,6 +227,12 @@ const getColumns = (props, jumpToDetail) => {
               <i className="iconfont iconxiangqing opIcon" />
               详情
             </a>
+            {record.status !== 4 && props.identify === 1 && (
+              <a onClick={() => showBackModal(record)} className={styles.fkBtn}>
+                <i className="iconfont iconyujingxinxi opIcon" />
+                回访
+              </a>
+            )}
           </div>
         );
       },
@@ -245,27 +251,12 @@ export default props => {
     changeCondition: null, // 搜索条件进行了变化：相当于是点了搜索，重置等等
   });
 
-  const [allCheck, setAllCheck] = useState(false); // 全选
-  const [backCheck, setBackCheck] = useState(false); // 反选
-  const [allOP, setAllOP] = useState(null); // 批量select
-
-  const [transferData, setTransfer] = useImmer({
-    // 移交弹框所需数据
-    showModal: false,
-    transIds: [],
-    close: () => {
-      setTransfer(draft => {
-        draft.showModal = false;
-        draft.transIds = [];
-      });
-    },
-  });
-  const [rejectData, setReject] = useImmer({
-    // 驳回弹框所需数据
+  const [backData, setBack] = useImmer({
+    // 回访弹框所需数据
     showModal: false,
     item: {},
     close: () => {
-      setReject(draft => {
+      setBack(draft => {
         draft.showModal = false;
         draft.item = {};
       });
@@ -340,20 +331,28 @@ export default props => {
     });
   };
 
+  // 回访弹框
+  const showBackModal = item => {
+    setBack(draft => {
+      draft.showModal = true;
+      draft.item = item;
+    });
+  };
+
   // 根据分辨率改变scroll
   let scroll = {};
   if (props.is1920) {
     if (tableObj.pageSize > 10) {
-      scroll = { y: 'calc(100vh - 32rem)', x: 3500 };
+      scroll = { y: 'calc(100vh - 32rem)', x: 3900 };
     } else {
-      scroll = { x: 3500 };
+      scroll = { x: 3900 };
     }
   } else if (props.is1600) {
-    scroll = { y: 'calc(100vh - 32rem)', x: 3500 };
+    scroll = { y: 'calc(100vh - 32rem)', x: 3900 };
   } else {
-    scroll = { y: 'calc(100vh - 27rem)', x: 3500 };
+    scroll = { y: 'calc(100vh - 27rem)', x: 3900 };
   }
-  const columns = getColumns(props, jumpToDetail);
+  const columns = getColumns(props, jumpToDetail, showBackModal);
 
   return (
     <>
@@ -379,8 +378,7 @@ export default props => {
           }}
         />
       </div>
-      <TransferModal {...transferData} getTable={getTable} />
-      <RejectModal {...rejectData} getTable={getTable} />
+      <BackVisitModal {...backData} getTable={getTable} />
     </>
   );
 };

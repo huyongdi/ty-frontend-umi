@@ -1768,6 +1768,88 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
+"@turf/area@6.x":
+  version "6.0.1"
+  resolved "http://10.20.9.199:4873/@turf%2farea/-/area-6.0.1.tgz#50ed63c70ef2bdb72952384f1594319d94f3b051"
+  integrity sha512-Zv+3N1ep9P5JvR0YOYagLANyapGWQBh8atdeR3bKpWcigVXFsEKNUw03U/5xnh+cKzm7yozHD6MFJkqQv55y0g==
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/meta" "6.x"
+
+"@turf/difference@^6.0.2":
+  version "6.0.2"
+  resolved "http://10.20.9.199:4873/@turf%2fdifference/-/difference-6.0.2.tgz#dd20c0e2301ba6c22019e38a36eea3975205a77f"
+  integrity sha512-WtXkvFgOyHqsG3xtYG/m5Su+gkvyCUTbdW0XOuc3Ha2u9UeeBSGwEzTc2y9THDLDhHqR+DlTl1MMEBihXcy3fg==
+  dependencies:
+    "@turf/area" "6.x"
+    "@turf/helpers" "6.x"
+    "@turf/invariant" "6.x"
+    "@turf/meta" "6.x"
+    martinez-polygon-clipping "^0.4.3"
+
+"@turf/helpers@6.x":
+  version "6.1.4"
+  resolved "http://10.20.9.199:4873/@turf%2fhelpers/-/helpers-6.1.4.tgz#d6fd7ebe6782dd9c87dca5559bda5c48ae4c3836"
+  integrity sha512-vJvrdOZy1ngC7r3MDA7zIGSoIgyrkWcGnNIEaqn/APmw+bVLF2gAW7HIsdTxd12s5wQMqEpqIQrmrbRRZ0xC7g==
+
+"@turf/intersect@^6.1.3":
+  version "6.1.3"
+  resolved "http://10.20.9.199:4873/@turf%2fintersect/-/intersect-6.1.3.tgz#c6574a2f00a38df6f81fc08d8103ad5295b7b6bc"
+  integrity sha512-SeAJG/zPRRTeyK2OifkPoyLq60q8tv8prpPIH3R8ZhyF4MdLOnMv5MURaQ6kQd+3UTDrL+pYm6rqbPvln1zqIw==
+  dependencies:
+    "@turf/helpers" "6.x"
+    "@turf/invariant" "6.x"
+    martinez-polygon-clipping "^0.4.3"
+
+"@turf/invariant@6.x":
+  version "6.1.2"
+  resolved "http://10.20.9.199:4873/@turf%2finvariant/-/invariant-6.1.2.tgz#6013ed6219f9ac2edada9b31e1dfa5918eb0a2f7"
+  integrity sha512-WU08Ph8j0J2jVGlQCKChXoCtI50BB3yEH21V++V0T4cR1T27HKCxkehV2sYMwTierfMBgjwSwDIsxnR4/2mWXg==
+  dependencies:
+    "@turf/helpers" "6.x"
+
+"@turf/kinks@6.x":
+  version "6.0.0"
+  resolved "http://10.20.9.199:4873/@turf%2fkinks/-/kinks-6.0.0.tgz#dde4f10f6e1ec18dc25a5d2d5dbe09aa994e9904"
+  integrity sha512-X2xk3+Sr9aeu51t1vBa7Iwowvjxcbl5fePLIo/dDOU4j5WeFoqGCto+DdEHQcC3y8HVUin4i8GaHVaM9sVTphg==
+  dependencies:
+    "@turf/helpers" "6.x"
+
+"@turf/meta@6.x":
+  version "6.0.2"
+  resolved "http://10.20.9.199:4873/@turf%2fmeta/-/meta-6.0.2.tgz#eb92951126d24a613ac1b7b99d733fcc20fd30cf"
+  integrity sha512-VA7HJkx7qF1l3+GNGkDVn2oXy4+QoLP6LktXAaZKjuT1JI0YESat7quUkbCMy4zP9lAUuvS4YMslLyTtr919FA==
+  dependencies:
+    "@turf/helpers" "6.x"
+
+"@tymap/core@^2.4.6":
+  version "2.4.6"
+  resolved "http://10.20.9.199:4873/@tymap%2fcore/-/core-2.4.6.tgz#02e295449f83f6e11eb5526d0197dc8a437f3380"
+  integrity sha512-+qkkoqo95uGAd6VvZ9sZG+NyIOnTcKIikK7n1IwJEK7XiENYZB3UTu6yOktk0zNOMIj7dzAWdp95B1PYBorwdg==
+  dependencies:
+    "@types/classnames" "^2.2.8"
+    "@types/leaflet" "^1.5.0"
+    "@types/leaflet.markercluster" "^1.4.0"
+    "@types/proj4leaflet" "^1.0.5"
+    "@types/prop-types" "^15.7.1"
+    classnames "^2.2.6"
+    leaflet "^1.5.1"
+    leaflet.markercluster "^1.4.1"
+    proj4leaflet "^1.0.2"
+    prop-types "^15.7.2"
+
+"@tymap/drawing@^2.1.1":
+  version "2.1.1"
+  resolved "http://10.20.9.199:4873/@tymap%2fdrawing/-/drawing-2.1.1.tgz#e81c634fda9ee297ecc835af042fa04e9b6a958a"
+  integrity sha512-K+3hR2wW/9uetSg4j+n9fpn+4kxu1BAp0RTKcWGyzMKvZyMe9MLm/+4ErsQr1q2pE6WBN/1feJb8bc3XrbqTpQ==
+  dependencies:
+    "@types/leaflet" "^1.5.0"
+    "@types/leaflet.pm" "^0.13.4"
+    "@types/prop-types" "^15.7.1"
+    leaflet "^1.5.1"
+    leaflet.pm "^2.1.0"
+    prop-types "^15.7.2"
+
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.npm.taobao.org/@types/anymatch/download/@types/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -1820,6 +1902,11 @@
   integrity sha1-5U9xwxNfcevBbI3GLtrVM4csnnI=
   dependencies:
     "@types/node" "*"
+
+"@types/classnames@^2.2.8":
+  version "2.2.10"
+  resolved "http://10.20.9.199:4873/@types%2fclassnames/-/classnames-2.2.10.tgz#cc658ca319b6355399efc1f5b9e818f1a24bf999"
+  integrity sha1-zGWMoxm2NVOZ78H1uegY8aJL+Zk=
 
 "@types/color-convert@*":
   version "1.9.0"
@@ -1894,6 +1981,11 @@
     "@types/express-serve-static-core" "*"
     "@types/qs" "*"
     "@types/serve-static" "*"
+
+"@types/geojson@*":
+  version "7946.0.7"
+  resolved "http://10.20.9.199:4873/@types%2fgeojson/-/geojson-7946.0.7.tgz#c8fa532b60a0042219cdf173ca21a975ef0666ad"
+  integrity sha1-yPpTK2CgBCIZzfFzyiGpde8GZq0=
 
 "@types/glob@*":
   version "7.1.2"
@@ -1998,6 +2090,27 @@
   resolved "https://registry.npm.taobao.org/@types/json-schema/download/@types/json-schema-7.0.5.tgz?cache=0&sync_timestamp=1591720921048&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fjson-schema%2Fdownload%2F%40types%2Fjson-schema-7.0.5.tgz#dcce4430e64b443ba8945f0290fb564ad5bac6dd"
   integrity sha1-3M5EMOZLRDuolF8CkPtWStW6xt0=
 
+"@types/leaflet.markercluster@^1.4.0":
+  version "1.4.2"
+  resolved "http://10.20.9.199:4873/@types%2fleaflet.markercluster/-/leaflet.markercluster-1.4.2.tgz#86b8ab7ca2397b48d9ba637757aaf7a6d1cc6f0f"
+  integrity sha1-hrirfKI5e0jZumN3V6r3ptHMbw8=
+  dependencies:
+    "@types/leaflet" "*"
+
+"@types/leaflet.pm@^0.13.4":
+  version "0.13.4"
+  resolved "http://10.20.9.199:4873/@types%2fleaflet.pm/-/leaflet.pm-0.13.4.tgz#37232897d3622be1a77d26edd71c0d791525b0ce"
+  integrity sha1-NyMol9NiK+GnfSbt1xwNeRUlsM4=
+  dependencies:
+    "@types/leaflet" "*"
+
+"@types/leaflet@*", "@types/leaflet@^1.5.0":
+  version "1.5.13"
+  resolved "http://10.20.9.199:4873/@types%2fleaflet/-/leaflet-1.5.13.tgz#e0e41612b236a6a37877a69a6eb996d2a9ba6905"
+  integrity sha1-4OQWErI2pqN4d6aabrmW0qm6aQU=
+  dependencies:
+    "@types/geojson" "*"
+
 "@types/lodash@4.14.150":
   version "4.14.150"
   resolved "https://registry.npm.taobao.org/@types/lodash/download/@types/lodash-4.14.150.tgz#649fe44684c3f1fcb6164d943c5a61977e8cf0bd"
@@ -2096,7 +2209,21 @@
   resolved "https://registry.npm.taobao.org/@types/prettier/download/@types/prettier-1.19.1.tgz#33509849f8e679e4add158959fdb086440e9553f"
   integrity sha1-M1CYSfjmeeSt0ViVn9sIZEDpVT8=
 
-"@types/prop-types@*":
+"@types/proj4@*":
+  version "2.5.0"
+  resolved "http://10.20.9.199:4873/@types%2fproj4/-/proj4-2.5.0.tgz#40f1ed1cb9ef66e442ab6e57eba32eadc0f0501a"
+  integrity sha1-QPHtHLnvZuRCq25X66MurcDwUBo=
+
+"@types/proj4leaflet@^1.0.5":
+  version "1.0.5"
+  resolved "http://10.20.9.199:4873/@types%2fproj4leaflet/-/proj4leaflet-1.0.5.tgz#f4b3fedd29363aa64ac9c27c1f65f8f649762c14"
+  integrity sha1-9LP+3Sk2OqZKycJ8H2X49kl2LBQ=
+  dependencies:
+    "@types/geojson" "*"
+    "@types/leaflet" "*"
+    "@types/proj4" "*"
+
+"@types/prop-types@*", "@types/prop-types@^15.7.1":
   version "15.7.3"
   resolved "https://registry.npm.taobao.org/@types/prop-types/download/@types/prop-types-15.7.3.tgz?cache=0&sync_timestamp=1588201821986&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40types%2Fprop-types%2Fdownload%2F%40types%2Fprop-types-15.7.3.tgz#2ab0d5da2e5815f94b0b9d4b95d1e5f243ab2ca7"
   integrity sha1-KrDV2i5YFflLC51LldHl8kOrLKc=
@@ -6440,7 +6567,7 @@ immer@^7.0.5:
   resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.5.tgz#8af347db5b60b40af8ae7baf1784ea4d35b5208e"
   integrity sha512-TtRAKZyuqld2eYjvWgXISLJ0ZlOl1OOTzRmrmiY8SlB0dnAhZ1OiykIDL5KDFNaPHDXiLfGQFNJGtet8z8AEmg==
 
-immutable@^3.8.1, immutable@^3.8.2:
+immutable@^3.8.1:
   version "3.8.2"
   resolved "https://registry.npm.taobao.org/immutable/download/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
   integrity sha1-wkOZUUVbs5kT2vKBN28VMOEErfM=
@@ -7695,7 +7822,22 @@ lcid@^3.0.0:
   dependencies:
     invert-kv "^3.0.0"
 
-leaflet@^1.3.4:
+leaflet.markercluster@^1.4.1:
+  version "1.4.1"
+  resolved "http://10.20.9.199:4873/leaflet.markercluster/-/leaflet.markercluster-1.4.1.tgz#b53f2c4f2ca7306ddab1dbb6f1861d5e8aa6c5e5"
+  integrity sha512-ZSEpE/EFApR0bJ1w/dUGwTSUvWlpalKqIzkaYdYB7jaftQA/Y2Jav+eT4CMtEYFj+ZK4mswP13Q2acnPBnhGOw==
+
+leaflet.pm@^2.1.0:
+  version "2.2.0"
+  resolved "http://10.20.9.199:4873/leaflet.pm/-/leaflet.pm-2.2.0.tgz#adbe27c4abb2855909f80b776a85b60dbcc650fe"
+  integrity sha1-rb4nxKuyhVkJ+At3aoW2DbzGUP4=
+  dependencies:
+    "@turf/difference" "^6.0.2"
+    "@turf/intersect" "^6.1.3"
+    "@turf/kinks" "6.x"
+    lodash "^4.17.15"
+
+leaflet@^1.5.1:
   version "1.6.0"
   resolved "http://10.20.9.199:4873/leaflet/-/leaflet-1.6.0.tgz#aecbb044b949ec29469eeb31c77a88e2f448f308"
   integrity sha1-rsuwRLlJ7ClGnusxx3qI4vRI8wg=
@@ -8046,6 +8188,14 @@ marked@0.8.2:
   version "0.8.2"
   resolved "https://registry.npm.taobao.org/marked/download/marked-0.8.2.tgz?cache=0&sync_timestamp=1589665829474&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fmarked%2Fdownload%2Fmarked-0.8.2.tgz#4faad28d26ede351a7a1aaa5fec67915c869e355"
   integrity sha1-T6rSjSbt41Gnoaql/sZ5Fchp41U=
+
+martinez-polygon-clipping@^0.4.3:
+  version "0.4.3"
+  resolved "http://10.20.9.199:4873/martinez-polygon-clipping/-/martinez-polygon-clipping-0.4.3.tgz#a3971ddf1da147104b5d0fbbf68f728bb62885c1"
+  integrity sha512-3ZNS0ksKhWTLsmCUkNf+/UimndZ5U2cVOS0I+IjiwF+M23E77TmeOZSmbRJbfCoQUog/vcQ42s3DXrhgOhgPqw==
+  dependencies:
+    splaytree "^0.1.4"
+    tinyqueue "^1.2.0"
 
 matchmediaquery@^0.3.0:
   version "0.3.1"
@@ -11654,6 +11804,11 @@ speed-measure-webpack-plugin@1.3.3:
   dependencies:
     chalk "^2.0.1"
 
+splaytree@^0.1.4:
+  version "0.1.4"
+  resolved "http://10.20.9.199:4873/splaytree/-/splaytree-0.1.4.tgz#fc35475248edcc29d4938c9b67e43c6b7e55a659"
+  integrity sha512-D50hKrjZgBzqD3FT2Ek53f2dcDLAQT8SSGrzj3vidNH5ISRgceeGVJ2dQIthKOuayqFXfFjXheHNo4bbt9LhRQ==
+
 split-on-first@^1.0.0:
   version "1.1.0"
   resolved "https://registry.npm.taobao.org/split-on-first/download/split-on-first-1.1.0.tgz?cache=0&sync_timestamp=1573632064999&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsplit-on-first%2Fdownload%2Fsplit-on-first-1.1.0.tgz#f610afeee3b12bce1d0c30425e76398b78249a5f"
@@ -12135,6 +12290,11 @@ tinycolor2@^1.4.1:
   resolved "https://registry.npm.taobao.org/tinycolor2/download/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
   integrity sha1-9PrTM0R7wLB9TcjpIJ2POaisd+g=
 
+tinyqueue@^1.2.0:
+  version "1.2.3"
+  resolved "http://10.20.9.199:4873/tinyqueue/-/tinyqueue-1.2.3.tgz#b6a61de23060584da29f82362e45df1ec7353f3d"
+  integrity sha512-Qz9RgWuO9l8lT+Y9xvbzhPT2efIUIFd69N7eF7tJ9lnQl0iLj1M7peK7IoUGZL9DJHw9XftqLreccfxcQgYLxA==
+
 tmpl@1.0.x:
   version "1.0.4"
   resolved "https://registry.npm.taobao.org/tmpl/download/tmpl-1.0.4.tgz#23640dd7b42d00433911140820e5cf440e521dd1"
@@ -12252,17 +12412,6 @@ tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
   resolved "https://registry.npm.taobao.org/tweetnacl/download/tweetnacl-0.14.5.tgz?cache=0&sync_timestamp=1581364304221&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Ftweetnacl%2Fdownload%2Ftweetnacl-0.14.5.tgz#5ae68177f192d4456269d108afa93ff8743f4f64"
   integrity sha1-WuaBd/GS1EViadEIr6k/+HQ/T2Q=
-
-tymap@^1.0.16:
-  version "1.0.16"
-  resolved "http://10.20.9.199:4873/tymap/-/tymap-1.0.16.tgz#61deda76a7c8df09b7a7e3323c9342f8054a0c56"
-  integrity sha512-lP191oNZ/ZD1Ufmz5XdE2ptM7QxafRfF2W3sDS4gDNWlhxbz1F5AkkEiaHiEV0hjG5/VKZ3L12ko5QQidAdotA==
-  dependencies:
-    classnames "^2.2.6"
-    immutable "^3.8.2"
-    leaflet "^1.3.4"
-    proj4leaflet "^1.0.2"
-    prop-types "^15.6.2"
 
 type-check@~0.3.2:
   version "0.3.2"

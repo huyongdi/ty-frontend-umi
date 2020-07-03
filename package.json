@@ -24,6 +24,8 @@
     "@ant-design/pro-layout": "^5.0.12",
     "@rematch/core": "^1.4.0",
     "@rematch/persist": "^1.1.6",
+    "@tymap/core": "^2.4.6",
+    "@tymap/drawing": "^2.1.1",
     "@umijs/hooks": "^1.9.3",
     "@umijs/preset-react": "1.x",
     "@umijs/test": "^3.2.4",
@@ -39,7 +41,6 @@
     "react-axios": "^2.0.3",
     "react-dom": "^16.12.0",
     "react-redux": "^7.2.0",
-    "tymap": "^1.0.16",
     "umi": "^3.2.4",
     "use-immer": "^0.4.0",
     "yorkie": "^2.0.0"
