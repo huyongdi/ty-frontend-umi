@@ -12,7 +12,7 @@ const getColumns = (
   listCheckboxChange,
   showTransModal,
   showRejectModal,
-  jumpToDetail,
+  jumpToDetail
 ) => {
   return [
     {
@@ -22,7 +22,7 @@ const getColumns = (
       fixed: props.is1920 ? false : 'left',
       render: (text, item) => {
         return <Checkbox checked={text} onChange={listCheckboxChange(item)} />;
-      },
+      }
     },
     {
       title: '编号',
@@ -46,7 +46,7 @@ const getColumns = (
             )}
           </span>
         );
-      },
+      }
     },
     {
       title: '预警等级',
@@ -59,19 +59,19 @@ const getColumns = (
             {useConfigParse(text, 'FRAUD_LEVEL')}
           </span>
         );
-      },
+      }
     },
     {
       title: '诈骗类型',
       dataIndex: 'fraudTypeDesc',
       ellipsis: {
-        showTitle: false,
+        showTitle: false
       },
       render: text => (
         <Tooltip placement="topLeft" title={text}>
           {text}
         </Tooltip>
-      ),
+      )
     },
     {
       title: '来源',
@@ -79,87 +79,87 @@ const getColumns = (
       width: 120,
       render: text => {
         return useConfigParse(text, 'FRAUD_SOURCE');
-      },
+      }
     },
     {
       title: '预警时间',
       dataIndex: 'rawTime',
       width: 180,
       render: text =>
-        text ? props.moment(text).format(props.dateFormat) : '--',
+        text ? props.moment(text).format(props.dateFormat) : '--'
     },
     {
       title: '受害人号码',
       dataIndex: ['victim', 'phone'],
       width: 130,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '嫌疑人号码',
       width: 130,
       dataIndex: ['suspect', 'phone'],
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人电话',
       dataIndex: 'victim[phone]',
       width: 131,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人姓名',
       dataIndex: 'victim[name]',
       width: 130,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人身份证号',
       dataIndex: 'victim[idcard]',
       width: 196,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人QQ',
       dataIndex: 'qq',
       width: 130,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人微信',
       dataIndex: 'wechat',
       width: 139,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人银行卡号',
       dataIndex: 'victim[bankcard]',
       width: 188,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人支付宝号',
       dataIndex: 'alipay',
       width: 202,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '受害人其他账号',
       dataIndex: 'otherAccount',
       width: 172,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '涉案网址',
       dataIndex: 'website',
       width: 228,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '推送时间',
       dataIndex: 'pushTime',
       width: 180,
       render: text =>
-        text ? props.moment(text).format(props.dateFormat) : '--',
+        text ? props.moment(text).format(props.dateFormat) : '--'
     },
     {
       title: '状态',
@@ -179,7 +179,7 @@ const getColumns = (
         } else {
           return <span>{text}</span>;
         }
-      },
+      }
     },
     {
       title: '操作',
@@ -213,8 +213,8 @@ const getColumns = (
             )}
           </div>
         );
-      },
-    },
+      }
+    }
   ];
 };
 
@@ -226,7 +226,7 @@ export default props => {
     pageNum: 1,
     pageSize: 10,
     total: 1,
-    changeCondition: null, // 搜索条件进行了变化：相当于是点了搜索，重置等等
+    changeCondition: null // 搜索条件进行了变化：相当于是点了搜索，重置等等
   });
 
   const [allCheck, setAllCheck] = useState(false); // 全选
@@ -242,7 +242,7 @@ export default props => {
         draft.showModal = false;
         draft.transIds = [];
       });
-    },
+    }
   });
   const [rejectData, setReject] = useImmer({
     // 驳回弹框所需数据
@@ -253,7 +253,7 @@ export default props => {
         draft.showModal = false;
         draft.item = {};
       });
-    },
+    }
   });
 
   useEffect(() => {
@@ -276,7 +276,7 @@ export default props => {
       bankcard: tableObj.bankcard, //银行卡号
       idcard: tableObj.idcard, //身份证号
       website: tableObj.website, // 涉案网址
-      fraudType: tableObj.fraudType,
+      fraudType: tableObj.fraudType
     };
     setTableInfo(draft => {
       draft.loading = true;
@@ -309,10 +309,10 @@ export default props => {
       draft.data.forEach(val => {
         if (val._key === item._key) val.check = e.target.checked;
         if (val.check) checkedLen += 1;
+        setAllCheck(checkedLen === tableObj.data.length);
       });
       draft.loading = false;
     });
-    setAllCheck(checkedLen === tableObj.data.length);
   };
   // 全选check改变时
   const allCheckChange = e => {
@@ -368,8 +368,8 @@ export default props => {
     props.history.push({
       pathname: '/warnDetail',
       state: {
-        jumpInfo: { ...record, axiosType: 'net', pageType: 1 },
-      },
+        jumpInfo: { ...record, axiosType: 'net', pageType: 1 }
+      }
     });
   };
 
@@ -391,7 +391,7 @@ export default props => {
     listCheckboxChange,
     showTransModal,
     showRejectModal,
-    jumpToDetail,
+    jumpToDetail
   );
 
   return (
@@ -414,7 +414,7 @@ export default props => {
             showQuickJumper: true,
             onChange: pageChange,
             onShowSizeChange: pageChange,
-            pageSizeOptions,
+            pageSizeOptions
           }}
         />
         {tableObj.data.length > 0 && props.identify !== 3 && (

@@ -22,6 +22,9 @@ export default [
       { path: '/xtzb', component: '@/pages/sysStat/phone' },
       { path: '/wnxtzb', component: '@/pages/sysStat/net' },
       { path: '/smsTemplate', component: '@/pages/smsTemplate' }, // 短信模板
-    ],
-  },
+      // 黑名单
+      { path: '/blackListPhone', component: '@/pages/blackList/phone' },
+      { path: '/blackListNet', component: '@/pages/blackList/net' }
+    ]
+  }
 ];

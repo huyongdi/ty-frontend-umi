@@ -12,7 +12,7 @@ const getColumns = (
   listCheckboxChange,
   showTransModal,
   showRejectModal,
-  jumpToDetail,
+  jumpToDetail
 ) => {
   return [
     {
@@ -22,7 +22,7 @@ const getColumns = (
       fixed: props.is1920 ? false : 'left',
       render: (text, item) => {
         return <Checkbox checked={text} onChange={listCheckboxChange(item)} />;
-      },
+      }
     },
     {
       title: '编号',
@@ -46,7 +46,7 @@ const getColumns = (
             )}
           </span>
         );
-      },
+      }
     },
     {
       title: '预警等级',
@@ -59,19 +59,19 @@ const getColumns = (
             {useConfigParse(text, 'FRAUD_LEVEL')}
           </span>
         );
-      },
+      }
     },
     {
       title: '诈骗类型',
       dataIndex: 'fraudTypeDesc',
       ellipsis: {
-        showTitle: false,
+        showTitle: false
       },
       render: text => (
         <Tooltip placement="topLeft" title={text}>
           {text}
         </Tooltip>
-      ),
+      )
     },
     {
       title: '来源',
@@ -79,45 +79,45 @@ const getColumns = (
       width: 120,
       render: text => {
         return useConfigParse(text, 'FRAUD_SOURCE');
-      },
+      }
     },
     {
       title: '受害人号码',
       dataIndex: ['victim', 'phone'],
       width: 130,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '嫌疑人号码',
       width: 130,
       dataIndex: ['suspect', 'phone'],
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '通话次数',
       width: 90,
       dataIndex: 'callTimes',
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '通话时长(S)',
       width: 110,
       dataIndex: 'callDuration',
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '最近联系时间',
       dataIndex: 'latestTime',
       width: 180,
       render: text =>
-        text ? props.moment(text).format(props.dateFormat) : '--',
+        text ? props.moment(text).format(props.dateFormat) : '--'
     },
     {
       title: '推送时间',
       dataIndex: 'pushTime',
       width: 180,
       render: text =>
-        text ? props.moment(text).format(props.dateFormat) : '--',
+        text ? props.moment(text).format(props.dateFormat) : '--'
     },
     {
       title: '状态',
@@ -137,7 +137,7 @@ const getColumns = (
         } else {
           return <span>{text}</span>;
         }
-      },
+      }
     },
     {
       title: '操作',
@@ -171,8 +171,8 @@ const getColumns = (
             )}
           </div>
         );
-      },
-    },
+      }
+    }
   ];
 };
 
@@ -184,7 +184,7 @@ export default props => {
     pageNum: 1,
     pageSize: 10,
     total: 1,
-    changeCondition: null, // 搜索条件进行了变化：相当于是点了搜索，重置等等
+    changeCondition: null // 搜索条件进行了变化：相当于是点了搜索，重置等等
   });
 
   const [allCheck, setAllCheck] = useState(false); // 全选
@@ -200,7 +200,7 @@ export default props => {
         draft.showModal = false;
         draft.transIds = [];
       });
-    },
+    }
   });
   const [rejectData, setReject] = useImmer({
     // 驳回弹框所需数据
@@ -211,7 +211,7 @@ export default props => {
         draft.showModal = false;
         draft.item = {};
       });
-    },
+    }
   });
 
   useEffect(() => {
@@ -232,7 +232,7 @@ export default props => {
       duration: tableObj.callDuration, // 通话时长
       times: tableObj.callTimes, // 通话次数
       processType: tableObj.processType, // 状态
-      fraudType: tableObj.fraudType,
+      fraudType: tableObj.fraudType
     };
     setTableInfo(draft => {
       draft.loading = true;
@@ -265,10 +265,10 @@ export default props => {
       draft.data.forEach(val => {
         if (val._key === item._key) val.check = e.target.checked;
         if (val.check) checkedLen += 1;
+        setAllCheck(checkedLen === tableObj.data.length);
       });
       draft.loading = false;
     });
-    setAllCheck(checkedLen === tableObj.data.length);
   };
   // 全选check改变时
   const allCheckChange = e => {
@@ -326,8 +326,8 @@ export default props => {
     props.history.push({
       pathname: '/warnDetail',
       state: {
-        jumpInfo: { ...record, axiosType: 'phone', pageType: 1 },
-      },
+        jumpInfo: { ...record, axiosType: 'phone', pageType: 1 }
+      }
     });
   };
 
@@ -347,7 +347,7 @@ export default props => {
     listCheckboxChange,
     showTransModal,
     showRejectModal,
-    jumpToDetail,
+    jumpToDetail
   );
 
   return (
@@ -370,7 +370,7 @@ export default props => {
             showQuickJumper: true,
             onChange: pageChange,
             onShowSizeChange: pageChange,
-            pageSizeOptions,
+            pageSizeOptions
           }}
         />
         {tableObj.data.length > 0 && props.identify === 1 && (

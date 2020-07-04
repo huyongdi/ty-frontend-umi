@@ -8,7 +8,7 @@ import {
   Input,
   Pagination,
   Tooltip,
-  message,
+  message
 } from 'antd';
 import axios from 'axios';
 import { TopSearch, TransferModal, RejectModal } from '@components';
@@ -23,7 +23,7 @@ import {
   PlusOutlined,
   ExclamationCircleOutlined,
   DeleteOutlined,
-  EditOutlined,
+  EditOutlined
 } from '@ant-design/icons';
 import echarts from 'echarts';
 
@@ -34,15 +34,15 @@ export default props => {
   const [tableObj, setTable] = useImmer({
     pageNum: 1,
     pageSize: 5,
-    listData: [],
+    listData: []
   });
   const [addObj, setAdd] = useImmer({
     show: false,
-    statusE: 'Y',
+    statusE: 'Y'
   });
   const [editObj, setEdit] = useImmer({
     show: false,
-    inEdit: false,
+    inEdit: false
   });
   useEffect(() => {
     getData();
@@ -56,7 +56,7 @@ export default props => {
       startTime: tableObj.startTime
         ? props.moment(tableObj.startTime).valueOf()
         : '',
-      endTime: tableObj.endTime ? props.moment(tableObj.endTime).valueOf() : '',
+      endTime: tableObj.endTime ? props.moment(tableObj.endTime).valueOf() : ''
     };
     let res = await axios.post('antifraud/smsTeamplte/page', params);
     setTable(draft => {
@@ -73,6 +73,7 @@ export default props => {
       draft.startTime = null;
       draft.endTime = null;
     });
+    getData();
   };
 
   // 页码改变时
@@ -104,7 +105,7 @@ export default props => {
       content: addObj.content,
       enabled: addObj.statusE,
       level: addObj.level,
-      fraudType: addObj.fraudType,
+      fraudType: addObj.fraudType
     };
     if (params.content.length > 256) {
       message.warn('短信内容请控制在256个字符！');
@@ -150,7 +151,7 @@ export default props => {
       content,
       enabled,
       fraudType,
-      level,
+      level
     };
 
     if (content.length > 256) {
@@ -177,7 +178,7 @@ export default props => {
       okText: '确定',
       cancelText: '取消',
       bodyStyle: {
-        padding: '20px',
+        padding: '20px'
       },
       className: styles.confirmModal,
       onOk: () => {
@@ -187,7 +188,7 @@ export default props => {
             message.success('删除成功');
             getData();
           });
-      },
+      }
     });
   };
   const { PHONE_TYPE, FRAUD_LEVEL, FRAUD_TYPE, peopleArr, smsArr, id } = props;
