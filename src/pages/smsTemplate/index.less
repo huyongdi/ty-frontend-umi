@@ -1,0 +1,182 @@
+.search {
+  background: #fff;
+  padding: 0.5rem 1rem;
+  .searchContent {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+
+    .searchInput {
+      display: inline-block;
+      width: 267px;
+    }
+
+    .searchBtn {
+      margin-right: 10px;
+    }
+  }
+}
+
+.tList {
+  margin-top: 20px;
+  position: relative;
+  background: #fff;
+  padding: 0.5rem 1rem 3rem 0.5rem;
+  .add {
+    display: inline-block;
+    border: 1px solid #2a8dff;
+    border-radius: 2px;
+    width: 114px;
+    height: 32px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    line-height: 32px;
+    text-align: center;
+    color: #2a8dff;
+    cursor: pointer;
+
+    i {
+      margin-right: 8px;
+    }
+  }
+
+  .list {
+    margin-top: 15px;
+    border-top: 1px solid #ddd;
+    padding: 0 20px 20px 20px;
+    .one {
+      border-bottom: 1px solid #ddd;
+      padding: 15px 0;
+
+      .title {
+        color: #000;
+        margin-bottom: 5px;
+      }
+
+      .bot {
+        color: #666;
+        display: flex;
+        justify-content: space-between;
+
+        .content {
+          display: inline-block;
+          width: 60%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+
+        .look {
+          color: #2a8dff;
+          display: inline-block;
+          margin-right: 10px;
+          cursor: pointer;
+        }
+
+        .delete {
+          color: #ff3d3d;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.confirmModal {
+  > div {
+    padding: 20px;
+  }
+}
+
+.addModal {
+  .one {
+    display: flex;
+    margin-bottom: 15px;
+
+    > span {
+      display: inline-block;
+      width: 100px;
+    }
+
+    .statusSelect {
+      margin-left: -20px;
+    }
+  }
+}
+
+.editModal {
+  .top {
+    .title {
+      font-size: 16px;
+      color: #333;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .search {
+      color: #999;
+      > i {
+        margin-right: 5px;
+      }
+    }
+    .editM {
+      float: right;
+      margin-right: 10px;
+    }
+    .deleteM {
+      float: right;
+    }
+  }
+  .split {
+    display: block;
+    width: calc(~'100% + 60px');
+    margin-left: -30px;
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  .smsInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    .val {
+      color: #333;
+      .circle {
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        margin-bottom: 2px;
+        margin-right: 5px;
+      }
+    }
+    .val.in {
+      color: #00a62d;
+      display: inline-block;
+      width: 100px;
+      .circle {
+        background: #00a62d;
+      }
+    }
+    .val.out {
+      color: #ff4d4d;
+      display: inline-block;
+      width: 100px;
+      .circle {
+        background: #ff4d4d;
+      }
+    }
+    > span {
+      display: inline-block;
+      width: 300px;
+    }
+  }
+  .textM {
+    margin-top: 10px;
+    height: 150px;
+  }
+}
+.pageN {
+  float: right;
+}

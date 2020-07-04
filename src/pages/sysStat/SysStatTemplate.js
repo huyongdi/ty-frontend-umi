@@ -340,7 +340,6 @@ export default props => {
           <div>
             统计时间：
             <RangePicker
-              style={{ width: 300 }}
               showTime={{ format: 'HH:mm' }}
               format={props.dateFormat}
               value={[condition.startTime, condition.endTime]}

@@ -21,6 +21,7 @@ export default [
       // 系统指标
       { path: '/xtzb', component: '@/pages/sysStat/phone' },
       { path: '/wnxtzb', component: '@/pages/sysStat/net' },
+      { path: '/smsTemplate', component: '@/pages/smsTemplate' }, // 短信模板
     ],
   },
 ];
