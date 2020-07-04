@@ -898,101 +898,99 @@
       }
     }
 
-    .map {
-      .mapC {
-        width: 100%;
-        height: calc(~'100vh - 350px');
-        //width: 500px;
-        //height: 500px;
-        margin-top: 20px;
-        position: relative;
+    .mapC {
+      width: 100%;
+      height: calc(~'100vh - 350px');
+      //width: 500px;
+      //height: 500px;
+      margin-top: 20px;
+      position: relative;
 
-        .mapList {
-          position: absolute;
-          height: calc(~'100vh - 390px');
-          width: 500px;
-          top: 20px;
-          left: 20px;
-          background: #fff;
-          box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.07);
-          z-index: 1000;
-          padding: 16px;
+      .mapList {
+        position: absolute;
+        height: calc(~'100vh - 390px');
+        width: 500px;
+        top: 20px;
+        left: 20px;
+        background: #fff;
+        box-shadow: 3px 4px 8px 0 rgba(0, 0, 0, 0.07);
+        z-index: 1000;
+        padding: 16px;
 
-          .listC {
-            height: calc(~'100vh - 490px');
-            margin-top: 15px;
-            overflow-y: auto;
+        .listC {
+          height: calc(~'100vh - 490px');
+          margin-top: 15px;
+          overflow-y: auto;
 
-            &::-webkit-scrollbar {
-              width: 5px;
-              background: #f2f2f2;
+          &::-webkit-scrollbar {
+            width: 5px;
+            background: #f2f2f2;
+          }
+
+          &::-webkit-scrollbar-track {
+            background: #f0f0f0;
+            border-radius: 4px;
+          }
+
+          &::-webkit-scrollbar-thumb {
+            border-radius: 4px;
+            background: #1890ff;
+          }
+
+          .one {
+            cursor: pointer;
+            margin-left: 30px;
+            margin-right: 10px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            position: relative;
+
+            .addr {
+              font-size: 16px;
+              color: #333;
             }
 
-            &::-webkit-scrollbar-track {
-              background: #f0f0f0;
-              border-radius: 4px;
+            .detail,
+            .time {
+              margin-top: 4px;
+              color: #666;
             }
 
-            &::-webkit-scrollbar-thumb {
-              border-radius: 4px;
-              background: #1890ff;
+            .icon {
+              position: absolute;
+              left: -25px;
+              top: 0;
+              color: #2a8dff;
             }
 
-            .one {
-              cursor: pointer;
-              margin-left: 30px;
-              margin-right: 10px;
-              border-bottom: 1px solid #ddd;
-              padding-bottom: 10px;
-              position: relative;
-
-              .addr {
-                font-size: 16px;
-                color: #333;
-              }
-
-              .detail,
-              .time {
-                margin-top: 4px;
-                color: #666;
-              }
-
-              .icon {
-                position: absolute;
-                left: -25px;
-                top: 0;
-                color: #2a8dff;
-              }
-
-              .rightMark {
-                position: absolute;
-                right: 0;
-                top: 0;
-                width: 78px;
-                height: 28px;
-                background: rgba(255, 135, 22, 0.18);
-                border: 1px solid #ff640e;
-                border-radius: 15px;
-                text-align: center;
-                line-height: 28px;
-                color: #ff640e;
-                //cursor: pointer;
-              }
+            .rightMark {
+              position: absolute;
+              right: 0;
+              top: 0;
+              width: 78px;
+              height: 28px;
+              background: rgba(255, 135, 22, 0.18);
+              border: 1px solid #ff640e;
+              border-radius: 15px;
+              text-align: center;
+              line-height: 28px;
+              color: #ff640e;
+              //cursor: pointer;
             }
+          }
 
-            .one:not(:first-child) {
-              margin-top: 10px;
-            }
+          .one:not(:first-child) {
+            margin-top: 10px;
+          }
 
-            .one:not(:last-child) {
-              .leftLine {
-                top: 25px;
-                left: -18px;
-                height: 80px;
-                border: 1px dashed #ccc;
-                display: inline-block;
-                position: absolute;
-              }
+          .one:not(:last-child) {
+            .leftLine {
+              top: 25px;
+              left: -18px;
+              height: 80px;
+              border: 1px dashed #ccc;
+              display: inline-block;
+              position: absolute;
             }
           }
         }

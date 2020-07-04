@@ -1,40 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Table,
-  Input,
-  Button,
-  message,
-  Modal,
-  Select,
-  DatePicker,
-  Statistic,
-} from 'antd';
-import { useEventTarget, useDebounceFn } from '@umijs/hooks';
-import axios from 'axios';
+import React, { useState } from 'react';
+import { Table } from 'antd';
 // import TYMap, {Popup} from 'tymap'
 import styles from './index.less';
-import { TYMap, Config, TileLayer } from '@tymap/core';
+import { Config, Icon, Point, Popup, TileLayer, TYMap } from '@tymap/core';
+import mapPerson from '@img/mapPerson.png';
+import { useImmer } from 'use-immer';
 
 export default props => {
   const [traType, setTra] = useState(1); // 列表模式还是地图模式
+  const [popObj, setPop] = useImmer({
+    position: null,
+    sourceName: null,
+    address: null,
+    timestamp: null
+  }); // 地图弹出层位置和信息
+
   const traColumns = [
     {
       title: '采集时间',
       dataIndex: 'timestamp',
       width: 300,
-      render: text => props.moment(text).format(props.dateFormat),
+      render: text => props.moment(text).format(props.dateFormat)
     },
     {
       title: '采集地点',
       dataIndex: 'address',
       // width: 70,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '发现类型',
       dataIndex: 'sourceName',
       width: 300,
-      render: text => text || '--',
+      render: text => text || '--'
     },
     {
       title: '上图',
@@ -42,27 +40,34 @@ export default props => {
       width: 200,
       render: (text, record) => {
         return (
-          <div className={styles.toMap} onClick={listToMap(record)}>
+          <div className={styles.toMap} onClick={() => listToMap(record)}>
             <i className="iconfont iconshezhi" />
             轨迹上图
           </div>
         );
-      },
-    },
+      }
+    }
   ];
   const { traArr } = props;
 
   // 列表上面的 上图按钮
-  const listToMap = item => () => {
-    let { allDetail } = this.props.yjfk.toJS();
-    const { id } = this.props.location.state;
-    allDetail[id].traType = 2;
-    this.props.updateKey({
-      allDetail,
+  const listToMap = item => {
+    setTra(2);
+    pointClick(item);
+  };
+
+  // 点击点
+  const pointClick = item => {
+    const { lng, lat, sourceName, address, timestamp } = item;
+    setPop(draft => {
+      draft.position = {
+        lng,
+        lat
+      };
+      draft.sourceName = sourceName;
+      draft.address = address;
+      draft.timestamp = timestamp;
     });
-    setTimeout(() => {
-      document.getElementById(item._key).click();
-    }, 0);
   };
 
   return (
@@ -83,6 +88,7 @@ export default props => {
       </div>
       <div className={`${styles.list} ${traType === 1 ? '' : 'hide'}`}>
         <Table
+          bordered={true}
           columns={traColumns}
           dataSource={traArr || []}
           rowKey="source"
@@ -91,8 +97,8 @@ export default props => {
           pagination={false}
         />
       </div>
-      <div className={`${styles.map} ${traType === 2 ? '' : 'hide'}`}>
-        <div className={styles.mapC}>
+      {traType === 2 && (
+        <div className={`${styles.mapC}`}>
           {
             <TYMap
               crs={Config.CRS.BMap}
@@ -100,36 +106,58 @@ export default props => {
               center={{ lng: 106.552901, lat: 29.570045 }}
               zoom={12}
               boundsOptions={{ maxZoom: 17 }}
+              bounds={traArr}
             >
+              {traArr.map(item => {
+                return (
+                  <Point
+                    key={item._key}
+                    position={{ lat: item.lat, lng: item.lng }}
+                    onClick={() => pointClick(item)}
+                  >
+                    <Icon iconUrl={mapPerson} />
+                  </Point>
+                );
+              })}
+              {popObj && (
+                <Popup position={popObj.position}>
+                  <div>数据源：{popObj.sourceName}</div>
+                  <div>采集地址：{popObj.address}</div>
+                  <div>
+                    采集时间：
+                    {props.moment(popObj.timestamp).format(props.dateFormat)}
+                  </div>
+                </Popup>
+              )}
+
               <TileLayer.BMap />
             </TYMap>
-            // traType === 2 &&
-            // <TYMap className={`${style.echart1} ${style.tyM}`} url={url}
-            //        center={mapCenter} zoom={12} boundsOptions={{maxZoom: 17}}
-            //        bounds={popups.position ? [] : traResult || []}>
-            //   <DivPoint points={traResult || []} pointdetal={this.pointdetal}/>
-            //   <Popup position={popups.position} content={popups.popup}/>
-            // </TYMap>
           }
-          {/*<div className={styles.mapList}>
+          <div className={styles.mapList}>
             <div>轨迹列表</div>
             <div className={styles.listC}>
-              {
-                traArr.map(item => {
-                  return <div key={item._key} className={styles.one} onClick={this.leftClick(item)}>
+              {traArr.map(item => {
+                return (
+                  <div
+                    key={item._key}
+                    className={styles.one}
+                    onClick={() => pointClick(item)}
+                  >
                     <div className={styles.addr}>{item.sourceName || '--'}</div>
                     <div className={styles.detail}>{item.address}</div>
-                    <div className={styles.time}>{moment(item.timestamp).format(dateFormat)}</div>
-                    <i className={`iconfont iconshezhi ${styles.icon}`}/>
-                    <span className={styles.leftLine}/>
+                    <div className={styles.time}>
+                      {props.moment(item.timestamp).format(props.dateFormat)}
+                    </div>
+                    <i className={`iconfont iconshezhi ${styles.icon}`} />
+                    <span className={styles.leftLine} />
                     <span className={styles.rightMark}>人像抓拍</span>
                   </div>
-                })
-              }
+                );
+              })}
             </div>
-          </div>*/}
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

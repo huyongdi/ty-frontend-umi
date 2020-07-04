@@ -1,19 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import {
-  Input,
-  Button,
-  message,
-  Modal,
-  Select,
-  DatePicker,
-  Statistic,
-} from 'antd';
-import { useEventTarget, useDebounceFn } from '@umijs/hooks';
+import React, { useEffect, useState } from 'react';
+import { DatePicker, message, Statistic } from 'antd';
 import axios from 'axios';
 import styles from './index.less';
-import { useSelector } from 'react-redux';
 import { useImmer } from 'use-immer';
-import { useParams, useLocation } from 'umi';
+import { useLocation } from 'umi';
 import timeImg from '@img/time.svg';
 import msToHMS from '@utils/msToHMS';
 import PageDetail from './PageDetail';
@@ -21,18 +11,19 @@ import PageRelation from './PageRelation';
 import PageMap from './PageMap';
 import { CloseOutlined } from '@ant-design/icons';
 import dhbc from '@img/dianhuabc.png';
+import guid from '@utils/createGuid';
 
 const { RangePicker } = DatePicker;
 const { Countdown } = Statistic;
 
 export default props => {
   const {
-    state: { jumpInfo },
+    state: { jumpInfo }
   } = useLocation();
   const [remainTime, setRemainTime] = useState(null);
   const [detailPage, setDetail] = useImmer({
     // 详情页面数据
-    tType: 1,
+    tType: 1
   });
   const [peopleArr, setPeople] = useState(null);
   const [traArr, setTra] = useState([]);
@@ -60,8 +51,8 @@ export default props => {
             msToHMS(
               detailPage.pushTime +
                 24 * 60 * 60 * 1000 -
-                props.moment().valueOf(),
-            ),
+                props.moment().valueOf()
+            )
           );
         }, 1000);
       }
@@ -94,7 +85,7 @@ export default props => {
   const getRelation = async sfzhm => {
     let result = await axios.post('antifraud/relation/about', {
       sfzhm,
-      formData: true,
+      formData: true
     });
     result && setPeople(result);
   };
@@ -107,9 +98,18 @@ export default props => {
         .subtract(1, 'day')
         .valueOf(),
       et: props.moment().valueOf(),
-      value: phone,
+      value: phone
     });
-    result && Array.isArray(result) && setTra(result);
+    if (result && Array.isArray(result)) {
+      setTra(
+        result.map(item => {
+          item._key = 'id' + guid();
+          item.lat = item.w;
+          item.lng = item.j;
+          return item;
+        })
+      );
+    }
   };
 
   // 获取短信模板
@@ -117,7 +117,7 @@ export default props => {
     let result = await axios.post('antifraud/smsTeamplte/page', {
       pageNum: 1,
       pageSize: 1000,
-      enabled: 'Y',
+      enabled: 'Y'
       // level: parseInt(obj.level),
       // fraudType: parseInt(obj.fraudType),
     });
@@ -140,7 +140,7 @@ export default props => {
     let params = {
       target: id,
       targetType: type,
-      type: 1,
+      type: 1
     };
     axios.post('antifraud/white/add', params).then(res => {
       if (res) {
@@ -320,7 +320,7 @@ export default props => {
                                 className={styles.rydangan}
                                 onClick={addToBlack(
                                   repeatDetail.website,
-                                  'WEBSITE',
+                                  'WEBSITE'
                                 )}
                               >
                                 加入黑名单
@@ -405,7 +405,7 @@ export default props => {
                           className={styles.rydangan}
                           onClick={addToBlack(
                             repeatDetail.suspect && repeatDetail.suspect.phone,
-                            'PHONE',
+                            'PHONE'
                           )}
                         >
                           <i className="iconfont iconrenyuandangan" />
