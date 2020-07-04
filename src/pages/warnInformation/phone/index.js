@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Input, message, Modal, Table, Checkbox, Tooltip, Select } from 'antd';
-import { useEventTarget } from '@umijs/hooks';
 import axios from 'axios';
-import { useModel } from 'umi';
 import { TopSearch, TransferModal, RejectModal } from '@components';
 import styles from './index.less';
 import pageSizeOptions from '@utils/pageSizeOptions';
 import { useConfigParse } from '@utils/useParse';
-// import moment from 'moment'
 import { useImmer } from 'use-immer';
 
 const getColumns = (

@@ -18,6 +18,9 @@ export default [
       // 已反馈预警
       { path: '/yfkyj', component: '@/pages/warnDone/phone' },
       { path: '/wnyfkyj', component: '@/pages/warnDone/net' },
+      // 系统指标
+      { path: '/xtzb', component: '@/pages/sysStat/phone' },
+      { path: '/wnxtzb', component: '@/pages/sysStat/net' },
     ],
   },
 ];

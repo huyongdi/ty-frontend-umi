@@ -6,7 +6,11 @@ import menuIcon from '@utils/menuIcon';
 import { Menu } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { AppstoreOutlined, LogoutOutlined } from '@ant-design/icons';
+import {
+  AppstoreOutlined,
+  LogoutOutlined,
+  EditOutlined,
+} from '@ant-design/icons';
 
 import styles from './index.less';
 import logo from '@img/logo.png';
@@ -163,6 +167,9 @@ export default props => {
               >
                 后台管理
               </Menu.Item>
+              {/*<Menu.Item icon={<EditOutlined />} onClick={logout}>*/}
+              {/*  修改密码*/}
+              {/*</Menu.Item>*/}
               <Menu.Item icon={<LogoutOutlined />} onClick={logout}>
                 退出登录
               </Menu.Item>

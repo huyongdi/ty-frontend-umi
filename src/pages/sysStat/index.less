@@ -1,0 +1,253 @@
+.statContent {
+  .search {
+    background: #fff;
+    padding: 0.5rem 1rem;
+    .searchTop {
+      margin-top: 10px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+
+      .businessSelect {
+        width: 300px;
+      }
+
+      .searchBtn {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .pieChart {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    .dealChart,
+    .areaChart {
+      width: calc(~'50% - 8px');
+      position: relative;
+
+      .yjType {
+        position: absolute;
+        left: calc(~'30% - 50px');
+        top: 40%;
+        background: #f0f6ff;
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+        text-align: center;
+        //line-height: 100px;
+        color: #333;
+        font-weight: bold;
+        font-size: 20px;
+        padding-top: 30px;
+      }
+
+      .echartConetnt {
+        margin-top: 10px;
+        border: 1px solid #ddd;
+        height: 300px;
+      }
+    }
+  }
+
+  .brokenLine {
+    height: 320px;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    .timeChart {
+      margin-top: 10px;
+      height: 300px;
+      border: 1px solid #dddddd;
+    }
+  }
+
+  .bc {
+    height: 20px;
+    width: calc(~'100% + 20px');
+    margin-left: -10px;
+    background-color: #f0f0f0;
+  }
+
+  .md {
+    background: #fff;
+    padding: 0 1rem;
+    .one:not(.noRight) {
+      padding-right: 16px;
+    }
+
+    .one {
+      position: relative;
+      color: #fff;
+      display: inline-block;
+      width: 25%;
+      margin-top: 20px;
+
+      > img {
+        width: 100%;
+      }
+
+      .name {
+        position: absolute;
+        left: 44px;
+        top: 15%;
+        font-size: 1.2rem;
+        color: #333;
+        font-weight: bold;
+      }
+
+      .count {
+        position: absolute;
+        left: 44px;
+        top: 40%;
+        font-size: 2.5rem;
+        color: #0c9de3;
+      }
+    }
+  }
+
+  .circleType {
+    display: flex;
+    justify-content: space-between;
+    background: #fff;
+    padding: 0.5rem 1rem;
+    .left {
+      width: 100%;
+      //margin-right: 16px;
+      //width: 60%;
+    }
+
+    .right {
+      width: 40%;
+
+      .rightContent {
+        margin-top: 10px;
+        margin-bottom: 16px;
+        height: 180px;
+
+        .line {
+          display: flex;
+          justify-content: space-between;
+
+          .rightOne {
+            padding: 20px 19px;
+            width: 231px;
+            height: 180px;
+            box-shadow: 0 2px 11px 0 rgba(0, 36, 124, 0.12);
+            margin-right: 15px;
+
+            > i {
+              float: right;
+            }
+
+            .money {
+              margin-top: 40px;
+              display: block;
+              width: 100%;
+              text-align: center;
+              color: #2a8dff;
+              font-size: 30px;
+            }
+          }
+        }
+      }
+    }
+
+    .left {
+      .circleContent {
+        margin-top: 10px;
+        margin-bottom: 16px;
+        height: 120px;
+        box-shadow: 0 2px 11px 0 rgba(0, 36, 124, 0.12);
+        padding: 0px 30px;
+
+        .line {
+          display: flex;
+          justify-content: space-between;
+
+          .one {
+            width: 170px;
+            position: relative;
+            margin-top: 30px;
+          }
+
+          .percent {
+            position: absolute;
+            left: 70px;
+            top: 0;
+            font-size: 23px;
+            color: #333333;
+            font-weight: bold;
+          }
+
+          .name {
+            position: absolute;
+            left: 70px;
+            top: 40px;
+            white-space: nowrap;
+          }
+
+          .circleProgress {
+            width: 100px;
+            height: 100px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.mdImg {
+  font-size: 25px;
+}
+
+.newMd {
+  margin-top: 1.5rem;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  .top1 {
+    .resultTotal {
+      margin-top: 20px;
+      display: flex;
+
+      .one:not(:last-child) {
+        margin-right: 16px;
+      }
+
+      .one {
+        width: 33%;
+        height: 166px;
+        padding: 24px 19px;
+        color: #fff;
+        .title {
+          font-size: 16px;
+        }
+        > i {
+          float: right;
+          font-size: 24px;
+          color: #fff;
+          margin-top: -10px;
+        }
+
+        .money {
+          font-size: 45px;
+          margin-top: 20px;
+          display: block;
+          text-align: center;
+        }
+      }
+
+      .one1 {
+        background-image: linear-gradient(135deg, #ff9896 0%, #e9677d 100%);
+      }
+      .one2 {
+        background-image: linear-gradient(135deg, #46d9f9 0%, #0799e1 100%);
+      }
+      .one3 {
+        background-image: linear-gradient(-45deg, #00c86c 0%, #07e162 100%);
+      }
+    }
+  }
+}
