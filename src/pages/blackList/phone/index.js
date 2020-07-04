@@ -9,7 +9,7 @@ import pageSizeOptions from '@utils/pageSizeOptions';
 export default props => {
   const [allCheck, setAllCheck] = useState(false); // 全选
   const [backCheck, setBackCheck] = useState(false); // 反选
-  const [allOP, setAllOP] = useState(null); // 批量select
+  const [allOP, setAll] = useState(null); // 批量select
 
   const [tableData, setTable] = useImmer({
     pageNum: 1,
