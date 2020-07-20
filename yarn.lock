@@ -1632,6 +1632,52 @@
     "@types/yargs" "^15.0.0"
     chalk "^3.0.0"
 
+"@jiaminghi/bezier-curve@*":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/bezier-curve/-/bezier-curve-0.0.9.tgz#5196aca93c8b061a612b4c3eabcedf9490cef6ee"
+  integrity sha512-u9xJPOEl6Dri2E9FfmJoGxYQY7vYJkURNX04Vj64tdi535tPrpkuf9Sm0lNr3QTKdHQh0DdNRsaa62FLQNQEEw==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+
+"@jiaminghi/c-render@*":
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/c-render/-/c-render-0.4.3.tgz#982ebd8f71b443bb9507834227834973ebd9b6d8"
+  integrity sha512-FJfzj5hGj7MLqqqI2D7vEzHKbQ1Ynnn7PJKgzsjXaZpJzTqs2Yw5OSeZnm6l7Qj7jyPAP53lFvEQNH4o4j6s+Q==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    "@jiaminghi/bezier-curve" "*"
+    "@jiaminghi/color" "*"
+    "@jiaminghi/transition" "*"
+
+"@jiaminghi/charts@^0.2":
+  version "0.2.17"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/charts/-/charts-0.2.17.tgz#de32d846b8e1209795c0720e32f76a916705dda3"
+  integrity sha512-Tp467RSTuG+oOq1AJ4xGSWJUfu7Vbq/WPwiXjt8N5vxrBf8nAjr9PGrk+65sfrU229+T/EQG15HPGlpSb7YLVQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+    "@jiaminghi/c-render" "*"
+
+"@jiaminghi/color@*":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/color/-/color-0.1.1.tgz#bddf9012dfce6982d3829a983ffeb91ee9dda7b6"
+  integrity sha512-M09+Sb5HGqVim0zo+nG5gU1v+6gXT8ptr0BZR6dMGt83XmCJgnZtO8s7llTW4hLFFFM5co6geZvTekqLpSPAAQ==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+
+"@jiaminghi/data-view-react@^1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/data-view-react/-/data-view-react-1.2.3.tgz#5788508355622dc9ed31f1f4093f9503108fabd4"
+  integrity sha512-aF73W/wNQ/qsmpQVF4x296MJfB95X5wn6ptZysdfDEXwVDWRoyPJwejm+nhKeCWqI76PDVt6zpHdQwQZyIf13w==
+  dependencies:
+    "@jiaminghi/charts" "^0.2"
+
+"@jiaminghi/transition@*":
+  version "1.1.11"
+  resolved "https://registry.yarnpkg.com/@jiaminghi/transition/-/transition-1.1.11.tgz#576d8af092434b34201eba5eaecc79dd33c8ad8c"
+  integrity sha512-owBggipoHMikDHHDW5Gc7RZYlVuvxHADiU4bxfjBVkHDAmmck+fCkm46n2JzC3j33hWvP9nSCAeh37t6stgWeg==
+  dependencies:
+    "@babel/runtime" "^7.5.5"
+
 "@rematch/core@^1.4.0":
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/@rematch/core/-/core-1.4.0.tgz#686ce814e1cf125029c5e9fba23ef3ab7c3eb2a7"
@@ -4612,6 +4658,11 @@ cosmiconfig@^6.0.0:
     parse-json "^5.0.0"
     path-type "^4.0.0"
     yaml "^1.7.2"
+
+countup.js@^1.9.3:
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/countup.js/-/countup.js-1.9.3.tgz#ce3e50cd7160441e478f07da31895edcc0f1c9dd"
+  integrity sha1-zj5QzXFgRB5HjwfaMYle3MDxyd0=
 
 create-ecdh@^4.0.0:
   version "4.0.3"
@@ -10618,6 +10669,15 @@ react-copy-to-clipboard@^5.0.1:
   dependencies:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
+
+react-countup@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/react-countup/-/react-countup-4.3.3.tgz#143a8d854d47290b73d6915eac20a12d839153c2"
+  integrity sha512-pWnxpwdPNRyJFha/YKKbyc4RLAw8PzmULdgCziGIgw6vxhT1VdccrvQgj38HBSoM2qF/MoLmn4M2klvDWVIdaw==
+  dependencies:
+    countup.js "^1.9.3"
+    prop-types "^15.7.2"
+    warning "^4.0.3"
 
 react-dom@^16.12.0, react-dom@^16.13.1:
   version "16.13.1"

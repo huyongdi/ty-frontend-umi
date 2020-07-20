@@ -1,16 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Input, message, Modal } from 'antd';
-import { useEventTarget } from '@umijs/hooks';
-import axios from 'axios';
-import { useModel } from 'umi';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from 'react'
+import { Input, message, Modal } from 'antd'
+import { useEventTarget } from '@umijs/hooks'
+import axios from 'axios'
+import { useDispatch } from 'react-redux'
 
-import styles from './index.less';
-import logo from '@img/logo.png';
-import loginAccount from '@img/login-account.svg';
-import loginPwd from '@img/login-password.svg';
-import chromeImg from '@img/login-chrome.png';
-
+import styles from './index.less'
+import logo from '@img/logo.png'
+import loginAccount from '@img/login-account.svg'
+import loginPwd from '@img/login-password.svg'
+import chromeImg from '@img/login-chrome.png'
 // 判断chrome版本号
 const judgeVersion = () => {
   let browser = {
@@ -20,18 +18,18 @@ const judgeVersion = () => {
     opera: false,
     safari: false,
     name: 'unknown',
-    version: 0,
-  };
+    version: 0
+  }
 
-  let userAgent = window.navigator.userAgent.toLowerCase();
+  let userAgent = window.navigator.userAgent.toLowerCase()
   if (/(msie|chrome|firefox|opera|netscape)\D+(\d[\d.]*)/.test(userAgent)) {
-    browser[RegExp.$1] = true;
-    browser.name = RegExp.$1;
-    browser.version = RegExp.$2;
+    browser[RegExp.$1] = true
+    browser.name = RegExp.$1
+    browser.version = RegExp.$2
   } else if (/version\D+(\d[\d.]*).*safari/.test(userAgent)) {
-    browser.safari = true;
-    browser.name = 'safari';
-    browser.version = RegExp.$2;
+    browser.safari = true
+    browser.name = 'safari'
+    browser.version = RegExp.$2
   }
 
   if (!browser.chrome) {
@@ -56,10 +54,10 @@ const judgeVersion = () => {
       ),
       footer: null,
       keyboard: false,
-      width: 400,
-    });
+      width: 400
+    })
   } else {
-    let versionArr = browser.version.split('.');
+    let versionArr = browser.version.split('.')
     if (parseInt(versionArr[0]) < 49) {
       // message.warn('您的浏览器版本过低，请点击页面下方的下载地址进行下载')
       Modal.warn({
@@ -82,67 +80,68 @@ const judgeVersion = () => {
         ),
         footer: null,
         keyboard: false,
-        width: 650,
-      });
+        width: 650
+      })
     }
   }
-};
+}
 
 export default props => {
-  const [nameProps] = useEventTarget();
-  const [pwdProps] = useEventTarget();
+  const [nameProps] = useEventTarget()
+  const [pwdProps] = useEventTarget()
   // const { p, status } = useSelector(state => state.system)
-  const { system } = useDispatch();
+  const { system } = useDispatch()
 
   useEffect(() => {
-    judgeVersion();
-  }, []);
+    judgeVersion()
+  }, [])
 
   // 点击登录按钮
   const login = async () => {
-    const userName = nameProps.value;
-    const password = pwdProps.value;
+    const userName = nameProps.value
+    const password = pwdProps.value
     if (!userName) {
-      message.warn('用户名不能为空!');
-      return;
+      message.warn('用户名不能为空!')
+      return
     }
     if (!password) {
-      message.warn('密码不能为空!');
-      return;
+      message.warn('密码不能为空!')
+      return
     }
     const loginRes = await axios.post('authcenter/auth/login', {
       userName,
       password,
-      productCode: 'af',
-    });
+      productCode: 'af'
+    })
     if (loginRes) {
-      localStorage.setItem('af-token', loginRes.token);
+      localStorage.setItem('af-token', loginRes.token)
       const userInfoRes = await axios.post(
         'authcenter/auth/getUserInfoByToken',
         {
-          token: loginRes.token,
-        },
-      );
-      system.updateKey({ userInfo: userInfoRes });
+          token: loginRes.token
+        }
+      )
+      system.updateKey({ userInfo: userInfoRes })
       if (userInfoRes) {
-        const menusRes = await axios('authcenter/menus/af');
-        system.updateKey({ allMenus: menusRes });
+        const menusRes = await axios('authcenter/menus/af')
+        system.updateKey({ allMenus: menusRes })
         system.updateKey([
           'activeMenu',
           {
             top: menusRes[0].code,
             menus: menusRes[0],
             openCode: [menusRes[0].child[0].code],
-            selectCode: [menusRes[0].child[0].child[0].code],
-          },
-        ]);
-        props.history.replace('/yjxx');
+            selectCode: [menusRes[0].child[0].child[0].code]
+          }
+        ])
+        props.history.replace('/yjxx')
       }
     }
-  };
+  }
 
   return (
     <div className={styles.loginWrap}>
+      <audio src={require(`@media/type1.mp3`)} controls="controls" />
       <div className={styles.mainWrap}>
         <div className={styles.sysTitle}>
           <img src={logo} alt="logo" />
@@ -165,5 +164,5 @@ export default props => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

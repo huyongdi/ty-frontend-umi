@@ -1,44 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { Input, Button, message, Modal, Select, DatePicker, Radio } from 'antd';
-import { useEventTarget, useDebounceFn } from '@umijs/hooks';
-import axios from 'axios';
-import styles from './index.less';
-import { useSelector } from 'react-redux';
-import { useImmer } from 'use-immer';
+import React, { useState } from 'react'
+import { DatePicker, Input, message, Modal, Radio } from 'antd'
+import { useDebounceFn } from '@umijs/hooks'
+import axios from 'axios'
+import styles from './index.less'
+import { useSelector } from 'react-redux'
 
-const { RangePicker } = DatePicker;
+const { RangePicker } = DatePicker
 export default props => {
-  const [effOrInv, setEI] = useState(1); // 是否有效
-  const [reason, setReason] = useState(null);
-  const [backTime, setTime] = useState(null); // 回访时间
-  const { parentOrgName } = useSelector(state => state.backEnd);
+  const [effOrInv, setEI] = useState(1) // 是否有效
+  const [reason, setReason] = useState(null)
+  const [backTime, setTime] = useState(null) // 回访时间
+  const { parentOrgName } = useSelector(state => state.backEnd)
 
   const closeModal = () => {
-    setReason(null);
-    setEI(1);
-    setTime(null);
-    props.close();
-  };
+    setReason(null)
+    setEI(1)
+    setTime(null)
+    props.close()
+  }
 
   const { run: handleOk } = useDebounceFn(() => {
     if (reason.length > 256) {
-      message.warn('驳回理由不能超过256个字符！');
-      return;
+      message.warn('驳回理由不能超过256个字符！')
+      return
     }
     let params = {
       fraudId: props.item.id,
       remark: reason,
       time: backTime ? backTime.valueOf() : '',
-      truthful: effOrInv,
-    };
+      truthful: effOrInv
+    }
     axios.post('antifraud/fraud/return/visit/add', params).then(res => {
       if (res) {
-        message.success('驳回成功！');
-        closeModal();
-        props.getTable();
+        message.success('驳回成功！')
+        closeModal()
+        props.getTable()
       }
-    });
-  }, 200);
+    })
+  }, 200)
 
   return (
     <Modal
@@ -68,7 +67,7 @@ export default props => {
           placeholder="请选择回访时间"
           value={backTime || null}
           onChange={date => {
-            setTime(date);
+            setTime(date)
           }}
         />
       </div>
@@ -81,5 +80,5 @@ export default props => {
         />
       </div>
     </Modal>
-  );
-};
+  )
+}
